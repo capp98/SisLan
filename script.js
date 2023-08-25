@@ -273,13 +273,13 @@ let documentos = [
 
 let servicos = [
   {
-    url: '/pages/cv.html',
+    url: './pages/cv.html',
     nome: 'currículo',
     servico: 'servicos',
     tipo: 'documento',
   },
   {
-    url: '/pages/proof-of-residence.html',
+    url: './pages/proof-of-residence.html',
     nome: 'declaração de residência',
     servico: 'servicos',
     tipo: 'documento',

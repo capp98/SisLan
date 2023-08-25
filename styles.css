@@ -94,6 +94,9 @@ div#boletos {
 div#documentos {
   background: #88c6be;
 }
+div#servicos {
+  background: #b4ccb9;
+}
 
 div.links {
   display: flex;

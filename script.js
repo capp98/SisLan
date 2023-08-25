@@ -284,4 +284,16 @@ let servicos = [
     servico: 'servicos',
     tipo: 'documento',
   },
+  {
+    url: 'https://online-audio-converter.com/pt/',
+    nome: 'conversor de áudio',
+    servico: 'servicos',
+    tipo: 'conversor',
+  },
+  {
+    url: 'https://www.ilovepdf.com/pt',
+    nome: 'editor de pdf',
+    servico: 'servicos',
+    tipo: 'conversor',
+  },
 ];

@@ -2,6 +2,10 @@
 
 :root {
   --gap: 5px;
+  --nav-color: #26547c;
+  --div1-color: #82b1ff;
+  --div2-color: #88c6be;
+  --div3-color: #b4ccb9;
 }
 
 * {
@@ -60,7 +64,7 @@ nav {
   padding: 10px 20px;
 
   color: #e0e0e0;
-  background: #26547c;
+  background: var(--nav-color);
   border: 2px solid black;
 }
 
@@ -89,13 +93,13 @@ main > div {
 }
 
 div#boletos {
-  background: #82b1ff;
+  background: var(--div1-color);
 }
 div#documentos {
-  background: #88c6be;
+  background: var(--div2-color);
 }
 div#servicos {
-  background: #b4ccb9;
+  background: var(--div3-color);
 }
 
 div.links {

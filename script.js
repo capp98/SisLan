@@ -165,6 +165,12 @@ let boletos = [
     tipo: '',
   },
   {
+    url: 'https://sal.rfb.gov.br/PortalSalInternet/faces/pages/calcContribuicoesCI/filiadosApos/exibirDadosCadastraisCIApos.xhtml',
+    nome: 'SAL (sistema de acréscimos legais)',
+    servico: 'boleto',
+    tipo: 'governo',
+  },
+  {
     url: 'https://pf.santandernet.com.br/LOGBBR_NS_ENS/ChannelDriver.ssobto?dse_contextRoot=true#',
     nome: 'santander',
     servico: 'boleto',
@@ -278,4 +284,4 @@ let servicos = [
     servico: 'servicos',
     tipo: 'documento',
   },
-]
+];

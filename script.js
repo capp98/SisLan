@@ -24,6 +24,8 @@ window.onload = function () {
   adicionaBoletos();
 
   adicionaDocumentos();
+
+  adicionaServicos();
 };
 
 function adicionaBoletos() {
@@ -39,6 +41,25 @@ function adicionaBoletos() {
     link.href = boleto.url;
     link.dataset.service = boleto.nome;
     link.innerHTML = boleto.nome;
+
+    div.appendChild(link);
+  });
+  servicosDiv.appendChild(div);
+}
+
+function adicionaServicos() {
+  let div = document.createElement('div');
+  let servicosDiv = document.getElementById('servicos');
+  div.className = 'links';
+
+  let link = null;
+  servicos.forEach((servico) => {
+    link = document.createElement('a');
+
+    link.target = '_blank';
+    link.href = servico.url;
+    link.dataset.service = servico.nome;
+    link.innerHTML = servico.nome;
 
     div.appendChild(link);
   });
@@ -243,3 +264,18 @@ let documentos = [
     tipo: 'detran',
   },
 ];
+
+let servicos = [
+  {
+    url: '/pages/cv.html',
+    nome: 'currículo',
+    servico: 'servicos',
+    tipo: 'documento',
+  },
+  {
+    url: '/pages/proof-of-residence.html',
+    nome: 'declaração de residência',
+    servico: 'servicos',
+    tipo: 'documento',
+  },
+]

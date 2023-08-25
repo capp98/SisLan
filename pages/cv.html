@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Home</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="/styles/pages.css" />
+    <script type="module" src="/scripts/cv.js"></script>
+  </head>
+
+  <body>
+    <nav>
+      <a href="/pages/decResidencia.html">Declaração de Residência</a
+      ><a href="/" class="selected">Currículo</a>
+    </nav>
+    <section class="contact-form">
+      <h1>Currículo</h1>
+
+      <form>
+        <fieldset id="dadosPessoais">
+          <legend>Dados Pessoais</legend>
+
+          <div class="div-input">
+            <input id="h" name="genero" type="radio" value="H" checked />
+            <label class="inline" for="h">Homem</label>
+
+            <input id="m" name="genero" type="radio" value="M" />
+            <label class="inline" for="m">Mulher</label>
+          </div>
+
+          <div class="div-input">
+            <label for="name">Nome Completo*</label>
+            <input id="name" name="nome" type="text" required />
+          </div>
+
+          <div class="div-input">
+            <label for="dataNasc">Data de Nascimento*</label>
+            <input
+              id="dataNasc"
+              name="dataNasc"
+              type="text"
+              required
+              maxlength="10"
+            />
+          </div>
+
+          <div class="div-input">
+            <label for="cep">CEP</label>
+            <input id="cep" type="text" maxlength="8" />
+          </div>
+
+          <div class="div-endereco div-input">
+            <div class="endereco endereco">
+              <label for="name">Endereço*</label>
+              <input id="endereco" name="endereco" type="text" />
+            </div>
+          </div>
+          <div class="div-endereco div-input">
+            <div class="endereco numero">
+              <label for="name">Número*</label>
+              <input id="numero" name="numero" type="text" />
+            </div>
+            <div class="endereco bairro">
+              <label for="name">Bairro*</label>
+              <input id="bairro" name="bairro" type="text" />
+            </div>
+          </div>
+          <div class="div-input">
+            <fieldset>
+              <legend>Telefones</legend>
+
+              <div class="div-input">
+                <div class="telefones">
+                  <input name="telefone" type="text" maxlength="15" />
+                </div>
+                <input
+                  type="button"
+                  class="botaoAcao adicionarTelefone"
+                  value="+"
+                />
+                <input
+                  type="button"
+                  class="botaoAcao removerTelefone"
+                  value="-"
+                />
+              </div>
+            </fieldset>
+          </div>
+
+          <div class="div-input">
+            <fieldset>
+              <legend>Estado Civil</legend>
+
+              <input
+                id="solteirx"
+                name="estadoCivil"
+                type="radio"
+                value="Solteiro"
+                checked
+              />
+              <label class="inline" for="solteirx">Solteiro</label>
+
+              <input
+                id="casadx"
+                name="estadoCivil"
+                type="radio"
+                value="Casado"
+              />
+              <label class="inline" for="casadx">Casado</label>
+
+              <input
+                id="uniao-estavel"
+                name="estadoCivil"
+                type="radio"
+                value="União Estável"
+              />
+              <label class="inline" for="uniao-estavel">União Estável</label>
+
+              <input
+                id="divorciadx"
+                name="estadoCivil"
+                type="radio"
+                value="Divorciado"
+              />
+              <label class="inline" for="divorciadx">Divorciado</label>
+
+              <input id="viuvx" name="estadoCivil" type="radio" value="Viúvo" />
+              <label class="inline" for="viuvx">Viúvo</label>
+            </fieldset>
+          </div>
+
+          <div class="div-input">
+            <label for="email">E-mail</label>
+            <input id="email" name="email" type="email" />
+          </div>
+          <div class="div-input">
+            <fieldset>
+              <legend>CNH*</legend>
+
+              <input id="cnh-a" name="cnh" type="radio" value="" checked />
+              <label class="inline" for="cnh-a">Sem CNH</label>
+
+              <input id="cnh-a" name="cnh" type="radio" value="A" />
+              <label class="inline" for="cnh-a">A</label>
+
+              <input id="cnh-b" name="cnh" type="radio" value="B" />
+              <label class="inline" for="cnh-b">B</label>
+
+              <input id="cnh-c" name="cnh" type="radio" value="C" />
+              <label class="inline" for="cnh-c">C</label>
+
+              <input id="cnh-d" name="cnh" type="radio" value="D" />
+              <label class="inline" for="cnh-d">D</label>
+
+              <input id="cnh-e" name="cnh" type="radio" value="E" />
+              <label class="inline" for="cnh-e">E</label>
+
+              <input id="cnh-ab" name="cnh" type="radio" value="AB" />
+              <label class="inline" for="cnh-ab">AB</label>
+
+              <input id="cnh-ac" name="cnh" type="radio" value="AC" />
+              <label class="inline" for="cnh-ac">AC</label>
+
+              <input id="cnh-ad" name="cnh" type="radio" value="AD" />
+              <label class="inline" for="cnh-ad">AD</label>
+
+              <input id="cnh-ae" name="cnh" type="radio" value="AE" />
+              <label class="inline" for="cnh-ae">AE</label>
+            </fieldset>
+          </div>
+
+          <div class="div-input">
+            <label for="formEscolar">Formação Escolar*</label>
+            <input
+              id="formEscolar"
+              name="formacaoEscolar"
+              type="text"
+              required
+            />
+          </div>
+        </fieldset>
+
+        <fieldset id="cursos">
+          <legend>Cursos</legend>
+
+          <div class="cursosField div-input">
+            <fieldset class="cursos">
+              <legend>Curso 1</legend>
+
+              <label for="curso-local">Local</label>
+              <input id="curso-local" type="text" />
+
+              <label for="curso-curso">Curso</label>
+              <input id="curso-curso" type="text" />
+
+              <label for="curso-periodo">Período</label>
+              <input id="curso-periodo" type="text" />
+            </fieldset>
+          </div>
+          <div class="div-input">
+            <input type="button" class="botaoAcao adicionarCurso" value="+" />
+            <input type="button" class="botaoAcao removerCurso" value="-" />
+          </div>
+        </fieldset>
+
+        <fieldset id="trabalhos">
+          <legend>Trabalhos</legend>
+
+          <div class="trabalhosField div-input">
+            <fieldset class="trabalhos">
+              <legend>Trabalho 1</legend>
+
+              <label for="trabalho-local">Local</label>
+              <input id="trabalho-local" type="text" />
+
+              <label for="trabalho-cargo">Cargo</label>
+              <input id="trabalho-cargo" type="text" />
+              <!-- <ul class="list"></ul> -->
+
+              <label for="trabalho-periodo">Período</label>
+              <input id="trabalho-periodo" type="text" />
+            </fieldset>
+          </div>
+          <div class="div-input">
+            <input
+              type="button"
+              class="botaoAcao adicionarTrabalho"
+              value="+"
+            />
+            <input type="button" class="botaoAcao removerTrabalho" value="-" />
+          </div>
+        </fieldset>
+        <button type="submit">Criar</button>
+      </form>
+    </section>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+    <script src="https://unpkg.com/docx@7.1.0/build/index.js"></script>
+  </body>
+</html>

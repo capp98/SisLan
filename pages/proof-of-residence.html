@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Home</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="/styles/pages.css" />
+    <script type="module" src="/scripts/decResidencia.js"></script>
+  </head>
+
+  <body>
+    <nav>
+      <a href="/pages/decResidencia.html" class="selected"
+        >Declaração de Residência</a
+      >
+      <a href="/">Currículo</a>
+    </nav>
+    <section class="contact-form">
+      <h1>Declaração de Residência</h1>
+
+      <form>
+        <fieldset>
+          <legend>Endereço</legend>
+          <div class="div-input">
+            <label for="cep">CEP</label>
+            <input id="cep" name="cep" type="text" />
+          </div>
+          <div class="div-input">
+            <div class="endereco endereco">
+              <label for="name">Endereço*</label>
+              <input id="endereco" name="endereco" type="text" />
+            </div>
+          </div>
+          <div class="div-endereco div-input">
+            <div class="endereco numero">
+              <label for="name">Número*</label>
+              <input id="numero" name="numero" type="text" />
+            </div>
+            <div class="endereco bairro">
+              <label for="name">Bairro*</label>
+              <input id="bairro" name="bairro" type="text" />
+            </div>
+          </div>
+        </fieldset>
+        <fieldset id="declarante">
+          <legend>Declarante</legend>
+
+          <div class="div-input">
+            <input id="h" name="genero" type="radio" value="o" checked />
+            <label class="inline" for="h">Homem</label>
+
+            <input id="m" name="genero" type="radio" value="a" />
+            <label class="inline" for="m">Mulher</label>
+          </div>
+
+          <div class="div-input">
+            <label for="name">Nome Completo*</label>
+            <input id="name" name="nome" type="text" required />
+          </div>
+
+          <div class="div-input">
+            <label for="rg">RG</label>
+            <input
+              class="rg"
+              id="rg"
+              name="rg"
+              type="text"
+              required
+              maxlength="9"
+            />
+          </div>
+
+          <div class="div-input">
+            <label for="cpf">CPF</label>
+            <input
+              class="cpf"
+              id="cpf"
+              name="cpf"
+              type="text"
+              required
+              maxlength="11"
+            />
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend>Declarado</legend>
+
+          <div class="div-input">
+            <input id="h2" name="genero2" type="radio" value="o" checked />
+            <label class="inline" for="h2">Homem</label>
+
+            <input id="m2" name="genero2" type="radio" value="a" />
+            <label class="inline" for="m2">Mulher</label>
+          </div>
+
+          <div class="div-input">
+            <label for="name2">Nome Completo*</label>
+            <input id="name2" name="nome2" type="text" required />
+          </div>
+
+          <div class="div-input">
+            <label for="rg2">RG</label>
+            <input
+              class="rg"
+              id="rg2"
+              name="rg2"
+              type="text"
+              required
+              maxlength="9"
+            />
+          </div>
+
+          <div class="div-input">
+            <label for="cpf2">CPF</label>
+            <input
+              class="cpf"
+              id="cpf2"
+              name="cpf2"
+              type="text"
+              maxlength="11"
+            />
+          </div>
+        </fieldset>
+        <button type="submit">Criar</button>
+      </form>
+    </section>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+    <script src="https://unpkg.com/docx@7.1.0/build/index.js"></script>
+  </body>
+</html>

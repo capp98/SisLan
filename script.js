@@ -206,6 +206,12 @@ let boletos = [
     servico: 'boleto',
     tipo: '',
   },
+  {
+    url: 'https://www.poupatempo.sp.gov.br/wps/myportal/poupatempoTaOn/servicos/sabesp/segundaViaContaSabesp/',
+    nome: 'sabesp',
+    servico: 'boleto',
+    tipo: 'poupatempo',
+  },
 ];
 
 let documentos = [
@@ -214,6 +220,18 @@ let documentos = [
     nome: 'quitação eleitoral',
     servico: 'documento',
     tipo: 'titulo eleitoral',
+  },
+  {
+    url: 'https://entregadeexames.com.br/',
+    nome: 'entrega de exames',
+    servico: 'documento',
+    tipo: 'exames',
+  },
+  {
+    url: 'https://esaj.tjsp.jus.br/sco/abrirCadastro.do',
+    nome: 'certidão de execução criminal',
+    servico: 'servicos',
+    tipo: '',
   },
   {
     url: 'http://www2.ssp.sp.gov.br/atestado/novo/Atestado02.cfm',
@@ -238,6 +256,12 @@ let documentos = [
     nome: 'situação cadastral do cpf',
     servico: 'documento',
     tipo: '',
+  },
+  {
+    url: 'http://bopm.policiamilitar.sp.gov.br/',
+    nome: 'boletim de ocorrência militar',
+    servico: 'documento',
+    tipo: 'policia militar',
   },
   {
     url: 'https://www.delegaciaeletronica.policiacivil.sp.gov.br/ssp-de-cidadao/home',
@@ -293,6 +317,12 @@ let servicos = [
   {
     url: 'https://www.ilovepdf.com/pt',
     nome: 'editor de pdf',
+    servico: 'servicos',
+    tipo: 'conversor',
+  },
+  {
+    url: 'https://www.tse.jus.br/servicos-eleitorais/autoatendimento-eleitoral#/',
+    nome: 'Autoatendimento eleitoral',
     servico: 'servicos',
     tipo: 'conversor',
   },

@@ -1,6 +1,12 @@
+document.getElementById('windowInfos').addEventListener('click', function (e) {
+  if (e.target.id == 'windowInfos') e.target.style.display = 'none';
+});
+
 document.getElementById('search').addEventListener('keyup', function (e) {
   search(e.target.value);
 });
+
+let isDetailed = document.getElementById('details');
 
 document.getElementById('search').addEventListener('click', function (e) {
   setTimeout(function () {
@@ -40,7 +46,9 @@ function adicionaBoletos() {
     link.target = '_blank';
     link.href = boleto.url;
     link.dataset.service = boleto.nome;
+    link.dataset.type = boleto.servico;
     link.innerHTML = boleto.nome;
+    link.addEventListener('click', showInfos);
 
     div.appendChild(link);
   });
@@ -56,11 +64,12 @@ function adicionaServicos() {
   servicos.forEach((servico) => {
     link = document.createElement('a');
 
-    link.target = '_blank';
     link.href = servico.url;
     link.dataset.service = servico.nome;
     link.innerHTML = servico.nome;
+    link.dataset.type = servico.servico;
 
+    link.addEventListener('click', showInfos);
     div.appendChild(link);
   });
   servicosDiv.appendChild(div);
@@ -78,11 +87,122 @@ function adicionaDocumentos() {
     link.target = '_blank';
     link.href = boleto.url;
     link.dataset.service = boleto.nome;
+    link.dataset.type = boleto.servico;
     link.innerHTML = boleto.nome;
+    link.addEventListener('click', showInfos);
 
     div.appendChild(link);
   });
   servicosDiv.appendChild(div);
+}
+
+function showInfos(e) {
+  let a = e.target;
+  if (isDetailed.checked) {
+    e.preventDefault();
+
+    let infosWindows = document.getElementById('infos');
+
+    if (infosWindows.childNodes.length >= 1) {
+      let chs = Array.from(infosWindows.children);
+      chs.forEach((child) => infosWindows.removeChild(child));
+    }
+
+    let t2 = document.createElement('h2');
+    t2.innerHTML = a.dataset.service;
+    infosWindows.appendChild(t2);
+
+    let tipo = a.dataset.type;
+
+    let infoFound = null;
+
+    if (tipo == 'documento') {
+      infoFound = documentos.find(
+        (servico) => servico.nome === a.dataset.service
+      );
+    } else if (tipo == 'boleto') {
+      infoFound = boletos.find((servico) => servico.nome === a.dataset.service);
+    } else {
+      infoFound = servicos.find(
+        (servico) => servico.nome === a.dataset.service
+      );
+    }
+
+    if (infoFound.extras !== undefined) {
+      let li = null;
+      let t3 = null;
+
+      if (infoFound.extras.preco !== undefined) {
+        let precosDiv = document.createElement('ul');
+        t3 = document.createElement('h3');
+        t3.innerHTML = 'Preço';
+        precosDiv.appendChild(t3);
+
+        if (infoFound.extras.preco.includes(';')) {
+          infoFound.extras.preco.split(';').forEach((preco) => {
+            li = document.createElement('li');
+            li.innerHTML = preco;
+            precosDiv.appendChild(li);
+          });
+        } else {
+          li = document.createElement('li');
+          li.innerHTML = infoFound.extras.preco;
+          precosDiv.appendChild(li);
+        }
+
+        infosWindows.appendChild(precosDiv);
+      }
+
+      if (infoFound.extras.necessario !== undefined) {
+        let necessariosDiv = document.createElement('ul');
+        t3 = document.createElement('h3');
+        t3.innerHTML = 'Necessário';
+        necessariosDiv.appendChild(t3);
+
+        if (infoFound.extras.necessario.includes(';')) {
+          infoFound.extras.necessario.split(';').forEach((necessario) => {
+            li = document.createElement('li');
+            li.innerHTML = necessario;
+            necessariosDiv.appendChild(li);
+          });
+        } else {
+          li = document.createElement('li');
+          li.innerHTML = infoFound.extras.necessario;
+          necessariosDiv.appendChild(li);
+        }
+
+        infosWindows.appendChild(necessariosDiv);
+      }
+
+      if (infoFound.extras.entrega !== undefined) {
+        let entregasDiv = document.createElement('ul');
+        t3 = document.createElement('h3');
+        t3.innerHTML = 'Entrega';
+        entregasDiv.appendChild(t3);
+
+        if (infoFound.extras.entrega.includes(';')) {
+          infoFound.extras.entrega.split(';').forEach((entrega) => {
+            li = document.createElement('li');
+            li.innerHTML = entrega;
+            entregasDiv.appendChild(li);
+          });
+        } else {
+          li = document.createElement('li');
+          li.innerHTML = infoFound.extras.entrega;
+          entregasDiv.appendChild(li);
+        }
+
+        infosWindows.appendChild(entregasDiv);
+      }
+
+      let link = document.createElement('a');
+      link.innerHTML = 'Ir';
+      link.src = a.href;
+      infosWindows.appendChild(link);
+
+      document.getElementById('windowInfos').style.display = 'block';
+    }
+  }
 }
 
 let boletos = [
@@ -143,12 +263,6 @@ let boletos = [
   {
     url: 'https://scimpmgsp.geometrus.com.br/digits',
     nome: 'IPTU (Guarujá)',
-    servico: 'boleto',
-    tipo: 'governo',
-  },
-  {
-    url: 'https://agenciavirtual.sabesp.com.br/minhas-faturas',
-    nome: 'sabesp',
     servico: 'boleto',
     tipo: 'governo',
   },
@@ -230,7 +344,7 @@ let documentos = [
   {
     url: 'https://esaj.tjsp.jus.br/sco/abrirCadastro.do',
     nome: 'certidão de execução criminal',
-    servico: 'servicos',
+    servico: 'documento',
     tipo: '',
   },
   {
@@ -286,12 +400,22 @@ let documentos = [
     nome: 'CRLV-E licenciamento de veículo',
     servico: 'documento',
     tipo: 'detran',
+    extras: {
+      preco: 'R$ 10,00 ; R$ 20,00 se não souber a conta Detran',
+      necessario: 'Senha Detran ; Acesso ao celular ou e-mail do proprietário',
+      entrega: 'Duas cópias do documento',
+    },
   },
   {
     url: 'https://www.detran.sp.gov.br/wps/myportal/portaldetran/cidadao/habilitacao/servicos/consultaPontos',
     nome: 'certidão de pontos na CNH',
     servico: 'documento',
     tipo: 'detran',
+    extras: {
+      preco: 'R$ 5,00;R$ 20,00 se não souber a conta Detran',
+      necessario: 'Senha Detran;Acesso ao celular ou e-mail do proprietário',
+      entrega: 'Duas cópias do documento',
+    },
   },
 ];
 
@@ -299,31 +423,34 @@ let servicos = [
   {
     url: '/SisLan/pages/cv.html',
     nome: 'currículo',
-    servico: 'servicos',
+    servico: 'serviço',
     tipo: 'documento',
+    extras: {
+      preco: 'R$ 8,00 - PDF ou 5 Cópias;R$ 10,00 - PDF + 5 Cópias',
+    },
   },
   {
     url: '/SisLan/pages/proof-of-residence.html',
     nome: 'declaração de residência',
-    servico: 'servicos',
+    servico: 'serviço',
     tipo: 'documento',
   },
   {
     url: 'https://online-audio-converter.com/pt/',
     nome: 'conversor de áudio',
-    servico: 'servicos',
+    servico: 'serviço',
     tipo: 'conversor',
   },
   {
     url: 'https://www.ilovepdf.com/pt',
     nome: 'editor de pdf',
-    servico: 'servicos',
+    servico: 'serviço',
     tipo: 'conversor',
   },
   {
     url: 'https://www.tse.jus.br/servicos-eleitorais/autoatendimento-eleitoral#/',
     nome: 'Autoatendimento eleitoral',
-    servico: 'servicos',
+    servico: 'serviço',
     tipo: 'conversor',
   },
 ];

@@ -197,7 +197,7 @@ function showInfos(e) {
 
       let link = document.createElement('a');
       link.innerHTML = 'Ir';
-      link.src = a.href;
+      link.href = a.href;
       infosWindows.appendChild(link);
 
       document.getElementById('windowInfos').style.display = 'block';

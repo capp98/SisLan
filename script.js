@@ -196,6 +196,7 @@ function showInfos(e) {
       }
 
       let link = document.createElement('a');
+      link.target = '_blank';
       link.innerHTML = 'Ir';
       link.href = a.href;
       infosWindows.appendChild(link);

@@ -34,12 +34,23 @@ window.onload = function () {
   adicionaServicos();
 };
 
+function ordenaPorNome(a, b) {
+  const nomeA = a.nome.toUpperCase();
+  const nomeB = b.nome.toUpperCase();
+
+  if (nomeA < nomeB) return -1;
+  if (nomeA > nomeB) return 1;
+  return 0;
+}
+
 function adicionaBoletos() {
   let div = document.createElement('div');
   let servicosDiv = document.getElementById('boletos');
   div.className = 'links';
 
   let link = null;
+
+  boletos.sort(ordenaPorNome);
   boletos.forEach((boleto) => {
     link = document.createElement('a');
 
@@ -61,6 +72,7 @@ function adicionaServicos() {
   div.className = 'links';
 
   let link = null;
+  servicos.sort(ordenaPorNome);
   servicos.forEach((servico) => {
     link = document.createElement('a');
 
@@ -81,6 +93,7 @@ function adicionaDocumentos() {
   div.className = 'links';
 
   let link = null;
+  documentos.sort(ordenaPorNome);
   documentos.forEach((boleto) => {
     link = document.createElement('a');
 
@@ -195,18 +208,56 @@ function showInfos(e) {
         infosWindows.appendChild(entregasDiv);
       }
 
-      let link = document.createElement('a');
-      link.target = '_blank';
-      link.innerHTML = 'Ir';
-      link.href = a.href;
-      infosWindows.appendChild(link);
+      if (infoFound.extras.instrucoes !== undefined) {
+        let instrucoesDiv = document.createElement('ul');
+        t3 = document.createElement('h3');
+        t3.innerHTML = 'Instruções';
+        instrucoesDiv.appendChild(t3);
 
-      document.getElementById('windowInfos').style.display = 'block';
+        if (infoFound.extras.instrucoes.includes(';')) {
+          infoFound.extras.instrucoes.split(';').forEach((instrucoes) => {
+            li = document.createElement('li');
+            li.innerHTML = instrucoes;
+            instrucoesDiv.appendChild(li);
+          });
+        } else {
+          li = document.createElement('li');
+          li.innerHTML = infoFound.extras.instrucoes;
+          instrucoesDiv.appendChild(li);
+        }
+
+        infosWindows.appendChild(instrucoesDiv);
+      }
     }
+    let link = document.createElement('a');
+    link.target = '_blank';
+    link.innerHTML = 'Ir';
+    link.href = a.href;
+    infosWindows.appendChild(link);
+
+    document.getElementById('windowInfos').style.display = 'block';
   }
 }
 
 let boletos = [
+  {
+    url: 'https://www.siscred.com.br/associados/login.aspx',
+    nome: 'Siscred/regicred',
+    servico: 'boleto',
+    tipo: 'cartão',
+  },
+  {
+    url: 'https://scimpmgsp.geometrus.com.br/mamb_lancamentos/segunda_via_boleto',
+    nome: 'Ambulante',
+    servico: 'boleto',
+    tipo: 'prefeitura',
+  },
+  {
+    url: 'https://scimpmgsp.geometrus.com.br/rf30',
+    nome: 'REFIS',
+    servico: 'boleto',
+    tipo: 'prefeitura',
+  },
   {
     url: 'https://web.whatsapp.com/send/?phone=5513997786129&text=Oi',
     nome: 'master net (whatsapp)',
@@ -284,6 +335,10 @@ let boletos = [
     nome: 'SAL (sistema de acréscimos legais)',
     servico: 'boleto',
     tipo: 'governo',
+    extras: {
+      instrucoes:
+        'Contribuinte Individual (1007, 1163, 1120, 1236, 1287, 1805)',
+    },
   },
   {
     url: 'https://pf.santandernet.com.br/LOGBBR_NS_ENS/ChannelDriver.ssobto?dse_contextRoot=true#',
@@ -331,6 +386,31 @@ let boletos = [
 
 let documentos = [
   {
+    url: 'https://www.detran.sp.gov.br/wps/myportal/portaldetran/cidadao/habilitacao/servicos/solicitacaoCertidaoProntuario',
+    nome: 'Certidão de Prontuário',
+    servico: 'boleto',
+    tipo: 'cartão',
+    extras: {
+      instrucoes: 'Recomendável acessar pelo Edge',
+    },
+  },
+  {
+    url: 'https://www.poupatempo.sp.gov.br/wps/myportal/poupatempoTaOn/listaRamos?arvId=2495#Z7_NHD2H4G0O0P5506KRJBM2P3OI3',
+    nome: 'agendar 2ª via do RG',
+    servico: 'boleto',
+    tipo: 'poupatempo',
+    extras: {
+      preco: 'R$ 15,00; R$ 20,00 se nao souber a conta gov',
+      instrucoes: 'Recomendável acessar pelo Edge',
+    },
+  },
+  {
+    url: 'https://www.poupatempo.sp.gov.br/wps/myportal/poupatempoTaOn/servicos/gerar-atestado-de-antecedentes-criminais',
+    nome: 'antecedente criminal estadual (poupatempo)',
+    servico: 'documento',
+    tipo: 'poupatempo',
+  },
+  {
     url: 'https://www.tse.jus.br/servicos-eleitorais/certidoes/certidao-de-quitacao-eleitoral',
     nome: 'quitação eleitoral',
     servico: 'documento',
@@ -353,6 +433,10 @@ let documentos = [
     nome: 'antecedente criminal estadual',
     servico: 'documento',
     tipo: '',
+    extras: {
+      preco: 'R$ 5,00',
+      necessario: 'RG mais recente',
+    },
   },
   {
     url: 'https://antecedentes.dpf.gov.br/antecedentes-criminais/certidao',
@@ -365,6 +449,10 @@ let documentos = [
     nome: 'radar consultas',
     servico: 'documento',
     tipo: '',
+    extras: {
+      preco: 'R$ 50,00',
+      entrega: 'Resultados do SERASA, SCPC, CARTÓRIO, SCORE',
+    },
   },
   {
     url: 'https://servicos.receita.fazenda.gov.br/Servicos/CPF/ConsultaSituacao/ConsultaPublica.asp',
@@ -403,8 +491,17 @@ let documentos = [
     tipo: 'detran',
     extras: {
       preco: 'R$ 10,00 ; R$ 20,00 se não souber a conta Detran',
-      necessario: 'Senha Detran ; Acesso ao celular ou e-mail do proprietário',
+      necessario: 'Acesso ao celular ou e-mail do proprietário',
       entrega: 'Duas cópias do documento',
+    },
+  },
+  {
+    url: 'https://www.detran.sp.gov.br/wps/myportal/portaldetran/cidadao/habilitacao/servicos/solicitacaoCertidaoProntuario',
+    nome: 'certidão de prontuário',
+    servico: 'documento',
+    tipo: 'detran',
+    extras: {
+      preco: 'R$ 5,00 ; R$ 20,00 se não souber a conta Detran',
     },
   },
   {
@@ -414,13 +511,20 @@ let documentos = [
     tipo: 'detran',
     extras: {
       preco: 'R$ 5,00;R$ 20,00 se não souber a conta Detran',
-      necessario: 'Senha Detran;Acesso ao celular ou e-mail do proprietário',
-      entrega: 'Duas cópias do documento',
     },
   },
 ];
 
 let servicos = [
+  {
+    url: 'https://mei.receita.economia.gov.br/baixa/acesso',
+    nome: 'fechar MEI',
+    servico: 'serviço',
+    tipo: 'governo;MEI',
+    extras: {
+      preco: 'R$ 20,00',
+    },
+  },
   {
     url: '/SisLan/pages/cv.html',
     nome: 'currículo',
@@ -435,6 +539,10 @@ let servicos = [
     nome: 'declaração de residência',
     servico: 'serviço',
     tipo: 'documento',
+    extras: {
+      preco: 'R$ 10,00',
+      entrega: '2 Cópias + Envelope',
+    },
   },
   {
     url: 'https://online-audio-converter.com/pt/',

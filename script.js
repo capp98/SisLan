@@ -129,12 +129,10 @@ function showInfos(e) {
     let infoFound = null;
 
     if (tipo == 'documento') {
-      console.log('docu');
       infoFound = documentos.find(
         (servico) => servico.nome === a.dataset.service
       );
     } else if (tipo == 'boleto') {
-      console.log('bole');
       infoFound = boletos.find((servico) => servico.nome === a.dataset.service);
     } else {
       console.log('serviços');

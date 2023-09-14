@@ -113,7 +113,6 @@ function showInfos(e) {
   let a = e.target;
   if (isDetailed.checked) {
     e.preventDefault();
-
     let infosWindows = document.getElementById('infos');
 
     if (infosWindows.childNodes.length >= 1) {
@@ -130,17 +129,19 @@ function showInfos(e) {
     let infoFound = null;
 
     if (tipo == 'documento') {
+      console.log('docu');
       infoFound = documentos.find(
         (servico) => servico.nome === a.dataset.service
       );
     } else if (tipo == 'boleto') {
+      console.log('bole');
       infoFound = boletos.find((servico) => servico.nome === a.dataset.service);
     } else {
+      console.log('serviços');
       infoFound = servicos.find(
         (servico) => servico.nome === a.dataset.service
       );
     }
-
     if (infoFound.extras !== undefined) {
       let li = null;
       let t3 = null;
@@ -229,6 +230,7 @@ function showInfos(e) {
         infosWindows.appendChild(instrucoesDiv);
       }
     }
+
     let link = document.createElement('a');
     link.target = '_blank';
     link.innerHTML = 'Ir';
@@ -388,20 +390,20 @@ let documentos = [
   {
     url: 'https://www.detran.sp.gov.br/wps/myportal/portaldetran/cidadao/habilitacao/servicos/solicitacaoCertidaoProntuario',
     nome: 'Certidão de Prontuário',
-    servico: 'boleto',
+    servico: 'documento',
     tipo: 'cartão',
     extras: {
-      instrucoes: 'Recomendável acessar pelo Edge',
+      instrucoes: 'Acessar pelo Edge',
     },
   },
   {
     url: 'https://www.poupatempo.sp.gov.br/wps/myportal/poupatempoTaOn/listaRamos?arvId=2495#Z7_NHD2H4G0O0P5506KRJBM2P3OI3',
     nome: 'agendar 2ª via do RG',
-    servico: 'boleto',
+    servico: 'documento',
     tipo: 'poupatempo',
     extras: {
       preco: 'R$ 15,00; R$ 20,00 se nao souber a conta gov',
-      instrucoes: 'Recomendável acessar pelo Edge',
+      necessario: 'Acessar pelo Edge',
     },
   },
   {

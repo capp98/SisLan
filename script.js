@@ -386,15 +386,6 @@ let boletos = [
 
 let documentos = [
   {
-    url: 'https://www.detran.sp.gov.br/wps/myportal/portaldetran/cidadao/habilitacao/servicos/solicitacaoCertidaoProntuario',
-    nome: 'Certidão de Prontuário',
-    servico: 'documento',
-    tipo: 'cartão',
-    extras: {
-      instrucoes: 'Acessar pelo Edge',
-    },
-  },
-  {
     url: 'https://www.poupatempo.sp.gov.br/wps/myportal/poupatempoTaOn/listaRamos?arvId=2495#Z7_NHD2H4G0O0P5506KRJBM2P3OI3',
     nome: 'agendar 2ª via do RG',
     servico: 'documento',

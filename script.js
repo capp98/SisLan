@@ -40,15 +40,11 @@ function search(word) {
   });
 }
 
-window.onload = function () {
-  console.log(boletos);
+adicionaBoletos();
 
-  adicionaBoletos();
+adicionaDocumentos();
 
-  adicionaDocumentos();
-
-  adicionaServicos();
-};
+adicionaServicos();
 
 function ordenaPorNome(a, b) {
   const nomeA = a.nome.toUpperCase();
@@ -65,8 +61,6 @@ function adicionaBoletos() {
   div.className = 'links';
 
   let link = null;
-
-  console.log(boletos);
 
   boletos.forEach((boleto) => {
     link = document.createElement('a');
@@ -89,7 +83,6 @@ function adicionaServicos() {
   div.className = 'links';
 
   let link = null;
-  servicos.sort(ordenaPorNome);
   servicos.forEach((servico) => {
     link = document.createElement('a');
 
@@ -110,7 +103,6 @@ function adicionaDocumentos() {
   div.className = 'links';
 
   let link = null;
-  documentos.sort(ordenaPorNome);
   documentos.forEach((boleto) => {
     link = document.createElement('a');
 
@@ -152,7 +144,6 @@ function showInfos(e) {
     } else if (tipo == 'boleto') {
       infoFound = boletos.find((servico) => servico.nome === a.dataset.service);
     } else {
-      console.log('serviços');
       infoFound = servicos.find(
         (servico) => servico.nome === a.dataset.service
       );

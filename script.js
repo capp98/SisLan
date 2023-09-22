@@ -148,11 +148,12 @@ function showInfos(e) {
         (servico) => servico.nome === a.dataset.service
       );
     }
-    if (infoFound.extras !== undefined) {
+
+    if (!!infoFound.extras) {
       let li = null;
       let t3 = null;
 
-      if (infoFound.extras.preco !== undefined) {
+      if (!!infoFound.extras.preco) {
         let precosDiv = document.createElement('ul');
         t3 = document.createElement('h3');
         t3.innerHTML = 'Preço';
@@ -173,7 +174,7 @@ function showInfos(e) {
         infosWindows.appendChild(precosDiv);
       }
 
-      if (infoFound.extras.necessario !== undefined) {
+      if (!!infoFound.extras.necessario) {
         let necessariosDiv = document.createElement('ul');
         t3 = document.createElement('h3');
         t3.innerHTML = 'Necessário';
@@ -194,7 +195,7 @@ function showInfos(e) {
         infosWindows.appendChild(necessariosDiv);
       }
 
-      if (infoFound.extras.entrega !== undefined) {
+      if (!!infoFound.extras.entrega) {
         let entregasDiv = document.createElement('ul');
         t3 = document.createElement('h3');
         t3.innerHTML = 'Entrega';
@@ -215,7 +216,7 @@ function showInfos(e) {
         infosWindows.appendChild(entregasDiv);
       }
 
-      if (infoFound.extras.instrucoes !== undefined) {
+      if (!!infoFound.extras.instrucoes) {
         let instrucoesDiv = document.createElement('ul');
         t3 = document.createElement('h3');
         t3.innerHTML = 'Instruções';

@@ -281,8 +281,8 @@ function gen(dados) {
           page: {
             margin: {
               top: '1.70cm',
-              right: '2cm',
-              bottom: '1.25cm',
+              right: '3cm',
+              bottom: '0cm',
               left: '3cm',
             },
             borders: {

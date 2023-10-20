@@ -108,7 +108,7 @@ div.links {
   flex-wrap: wrap;
   align-items: center;
 
-  gap: 15px;
+  gap: 5px;
 }
 
 .links > a {
@@ -118,14 +118,13 @@ div.links {
   text-align: center;
   font-weight: 800;
   min-width: 100px;
-  font-style: italic;
   letter-spacing: 2px;
   white-space: nowrap;
 
   flex: 1 1 auto;
   line-height: 50px;
   background: #ffd3ef;
-  border-radius: 20px;
+  border-radius: 0px;
   transition: all 0.15s ease-out;
   box-shadow: inset -3px -3px #000, inset 2px 2px 20px #fff;
   padding: 0px 10px;
@@ -134,7 +133,7 @@ div.links {
   box-shadow: inset -5px -5px #000, inset 2px 2px 20px #fff;
 }
 .links > a:active {
-  box-shadow: inset 0px 0px 0px;
+  box-shadow: inset -3px -3px #000, inset 2px 2px 20px #fff;
   transition: all 0s;
 }
 

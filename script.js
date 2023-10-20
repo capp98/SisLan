@@ -245,5 +245,15 @@ function showInfos(e) {
     infosWindows.appendChild(link);
 
     document.getElementById('windowInfos').style.display = 'block';
+
+    document.body.addEventListener('keydown', keyDownListener);
   }
 }
+
+let keyDownListener = function (e) {
+  if (e.which === 27) {
+    document.getElementById('windowInfos').style.display = 'none';
+
+    document.body.removeEventListener('keydown', keyDownListener);
+  }
+};

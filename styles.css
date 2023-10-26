@@ -36,7 +36,7 @@ input:not([type='checkbox']) {
   transition: box-shadow 0.15s ease-in;
 }
 input:not([type='checkbox']):focus {
-  box-shadow: inset -2px -2px 3px #333, inset 2px 2px 3px #333;
+  box-shadow: inset 0px 0px 0px 1px #333;
   outline: 1px solid black;
 }
 
@@ -82,7 +82,7 @@ main > div {
   display: flex;
   flex-direction: column;
 
-  gap: 20px;
+  gap: 5px;
   padding: 15px;
   flex: 1 1 250px;
   width: 100%;
@@ -108,34 +108,35 @@ div.links {
   flex-wrap: wrap;
   align-items: center;
 
-  gap: 5px;
+  gap: 1px;
 }
 
 .links > a {
-  color: #3e3e3e;
+  color: #000;
   text-decoration: none;
   text-transform: capitalize;
   text-align: center;
   font-weight: 800;
   min-width: 100px;
-  letter-spacing: 2px;
+  letter-spacing: 0px;
   white-space: nowrap;
 
   flex: 1 1 auto;
-  line-height: 50px;
+  /* line-height: 50px; */
   background: #ffd3ef;
   border-radius: 0px;
   transition: all 0.15s ease-out;
-  box-shadow: inset -3px -3px #000, inset 2px 2px 20px #fff;
-  padding: 0px 10px;
+  /* box-shadow: inset -3px -3px #000, inset 2px 2px 20px #fff; */
+  padding: 12px 10px;
 }
-.links > a:hover {
-  box-shadow: inset -5px -5px #000, inset 2px 2px 20px #fff;
+.links > a:hover,
+.links > a:focus {
+  box-shadow: inset 0px 0px 0px 2px #000;
 }
-.links > a:active {
+/* .links > a:active {
   box-shadow: inset -3px -3px #000, inset 2px 2px 20px #fff;
   transition: all 0s;
-}
+} */
 
 #windowInfos {
   position: fixed;

@@ -86,6 +86,7 @@ function adicionaServicos() {
   servicos.forEach((servico) => {
     link = document.createElement('a');
 
+    link.target = '_blank';
     link.href = servico.url;
     link.dataset.service = servico.nome;
     link.innerHTML = servico.nome;

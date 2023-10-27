@@ -247,6 +247,7 @@ function showInfos(e) {
     document.getElementById('windowInfos').style.display = 'block';
 
     document.body.addEventListener('keydown', keyDownListener);
+    document.body.removeEventListener('keydown', keyDownListenerClearSearch);
   }
 }
 
@@ -255,5 +256,19 @@ let keyDownListener = function (e) {
     document.getElementById('windowInfos').style.display = 'none';
 
     document.body.removeEventListener('keydown', keyDownListener);
+    document.body.addEventListener('keydown', keyDownListenerClearSearch);
   }
 };
+
+let keyDownListenerClearSearch = function (e) {
+  if (e.which === 27) {
+    document.getElementById('search').value = '';
+    document.querySelectorAll('a').forEach((a) => (a.style.display = 'block'));
+  }
+};
+
+document.body.addEventListener(
+  'load',
+  document.body.addEventListener('keydown', keyDownListenerClearSearch),
+  false
+);

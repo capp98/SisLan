@@ -12,6 +12,10 @@ let documentos = await fetch(
   .then((response) => response.json())
   .then((data) => data);
 
+let modelos = await fetch('https://sislan-api.onrender.com/services/modelo')
+  .then((response) => response.json())
+  .then((data) => data);
+
 document.getElementById('windowInfos').addEventListener('click', function (e) {
   if (e.target.id == 'windowInfos') e.target.style.display = 'none';
 });
@@ -46,6 +50,8 @@ adicionaDocumentos();
 
 adicionaServicos();
 
+adicionaModelos();
+
 function ordenaPorNome(a, b) {
   const nomeA = a.nome.toUpperCase();
   const nomeB = b.nome.toUpperCase();
@@ -53,6 +59,25 @@ function ordenaPorNome(a, b) {
   if (nomeA < nomeB) return -1;
   if (nomeA > nomeB) return 1;
   return 0;
+}
+
+function adicionaModelos() {
+  let div = document.createElement('div');
+  let servicosDiv = document.getElementById('documentos');
+  div.className = 'links';
+
+  let link = null;
+  modelos.forEach((modelo) => {
+    link = document.createElement('a');
+
+    link.dataset.service = modelo.url;
+    link.dataset.type = modelo.servico;
+    link.innerHTML = modelo.nome;
+    link.addEventListener('click', downloadDocument);
+
+    div.appendChild(link);
+  });
+  servicosDiv.appendChild(div);
 }
 
 function adicionaBoletos() {
@@ -117,6 +142,17 @@ function adicionaDocumentos() {
     div.appendChild(link);
   });
   servicosDiv.appendChild(div);
+}
+
+function downloadDocument(e) {
+  const url = `https://sislan-api.onrender.com/downloadDocument/${e.target.dataset.service}`;
+
+  fetch(url)
+    .then((res) => res.blob())
+    .then((blob) => {
+      var file = window.URL.createObjectURL(blob);
+      window.location.assign(file);
+    });
 }
 
 function showInfos(e) {

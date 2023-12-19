@@ -195,3 +195,13 @@ div.links {
   text-align: center;
   text-decoration: none;
 }
+
+@media (max-width: 770px) {
+  body {
+    overflow-y: auto;
+  }
+  main > div {
+    height: fit-content;
+    overflow-y: unset;
+  }
+}

@@ -6,7 +6,7 @@ let boletos = await fetch('https://sislan-api.onrender.com/services/boleto')
   .then((response) => response.json())
   .then((data) => data);
 
-let documentos = await fetch(
+let documents = await fetch(
   'https://sislan-api.onrender.com/services/documento'
 )
   .then((response) => response.json())
@@ -15,6 +15,10 @@ let documentos = await fetch(
 let modelos = await fetch('https://sislan-api.onrender.com/services/modelo')
   .then((response) => response.json())
   .then((data) => data);
+
+let documentos = [...documents, ...modelos];
+
+console.log(documentos)
 
 document.getElementById('windowInfos').addEventListener('click', function (e) {
   if (e.target.id == 'windowInfos') e.target.style.display = 'none';
@@ -50,7 +54,7 @@ adicionaDocumentos();
 
 adicionaServicos();
 
-adicionaModelos();
+// adicionaModelos();
 
 function ordenaPorNome(a, b) {
   const nomeA = a.nome.toUpperCase();

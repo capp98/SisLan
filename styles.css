@@ -123,7 +123,7 @@ div.links {
   font-weight: 800;
   min-width: 100px;
   letter-spacing: 0px;
-  white-space: nowrap;
+  /* white-space: nowrap; */
 
   flex: 1 1 auto;
   /* line-height: 50px; */

@@ -136,19 +136,20 @@ function gen(dados) {
   const texto = docx.TextRun;
   const paragrafo = docx.Paragraph;
 
-  const paragrafoTitulo = new paragrafo({
-    children: [
-      new texto({
-        text: 'DECLARAÇÃO DE RESIDÊNCIA',
-        bold: true,
-      }),
-    ],
-    style: 'titulo',
-    spacing: {
-      after: convertePt(65),
-    },
-    alignment: docx.AlignmentType.CENTER,
-  });
+  const paragrafoTitulo = (titulo) =>
+    new paragrafo({
+      children: [
+        new texto({
+          text: titulo.toUpperCase(),
+          bold: true,
+        }),
+      ],
+      style: 'titulo',
+      spacing: {
+        // after: convertePt(65),
+      },
+      alignment: docx.AlignmentType.CENTER,
+    });
 
   const paragrafoDeclaracao = new paragrafo({
     children: [
@@ -193,9 +194,11 @@ function gen(dados) {
 
     spacing: {
       line: 360,
-      after: 280 * 2,
+      // after: 280 * 2,
     },
   });
+
+  const espacoVazio = new paragrafo({ text: '' });
 
   const paragrafoDepois = new paragrafo({
     children: [
@@ -210,7 +213,7 @@ function gen(dados) {
     },
     spacing: {
       line: 360,
-      after: convertePt(35),
+      // after: convertePt(35),
     },
   });
 
@@ -228,7 +231,7 @@ function gen(dados) {
     style: 'normal',
     spacing: {
       line: 189 * 2,
-      after: convertePt(35),
+      // after: convertePt(35),
     },
   });
 
@@ -239,7 +242,7 @@ function gen(dados) {
     style: 'normal',
     alignment: docx.AlignmentType.CENTER,
     spacing: {
-      after: convertePt(5),
+      // after: convertePt(5),
     },
   });
 
@@ -320,10 +323,20 @@ function gen(dados) {
           },
         },
         children: [
-          paragrafoTitulo,
+          paragrafoTitulo('Declaração de Residência'),
+          espacoVazio,
+          espacoVazio,
+          espacoVazio,
+          espacoVazio,
           paragrafoDeclaracao,
+          espacoVazio,
+          espacoVazio,
           paragrafoDepois,
+          espacoVazio,
+          espacoVazio,
           paragrafoAntesLinha,
+          espacoVazio,
+          espacoVazio,
           paragrafoLinha,
           paragrafoDepoisLinha,
         ],

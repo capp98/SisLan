@@ -237,17 +237,17 @@ function gen(dados) {
   const paragrafoDepois = new paragrafo({
     children: [
       new texto({
-        text: 'Firmam entre si o presente contrato de venda e posse, pelo ',
+        text: `Firmam entre si o presente contrato de venda e posse, pel${dados.genero} `,
       }),
       new texto({
-        text: 'VENDEDOR ',
+        text: `VENDEDOR${dados.genero == 'a' ? 'A' : ''} `,
         bold: true,
       }),
       new texto({
-        text: 'e o ',
+        text: `e ${dados.genero2} `,
       }),
       new texto({
-        text: 'COMPRADOR, ',
+        text: `COMPRADOR${dados.genero2 == 'a' ? 'A' : ''}, `,
         bold: true,
       }),
       new texto({
@@ -404,11 +404,13 @@ function gen(dados) {
           new paragrafo({
             children: [
               new texto({
-                text: `O Comprador pagou ao Vendedor o valor de R$ ${
-                  dados.valor
-                } (${dados.valor.split(',')[0].extenso()} reais). ${
-                  dados.formaDePagamento
-                }`,
+                text: `${dados.genero2.toUpperCase()} Comprador${
+                  dados.genero2 == 'a' ? 'a' : ''
+                } pagou a${dados.genero == 'o' ? 'o' : ''} Vendedor${
+                  dados.genero == 'a' ? 'a' : ''
+                } o valor de R$ ${dados.valor} (${dados.valor
+                  .split(',')[0]
+                  .extenso()} reais). ${dados.formaDePagamento}`,
               }),
             ],
             indent: {
@@ -424,7 +426,11 @@ function gen(dados) {
               line: 276,
             },
           }),
-          new paragrafo({ text: '(Assinatura do Vendedor)' }),
+          new paragrafo({
+            text: `(Assinatura d${dados.genero} Vendedor${
+              dados.genero == 'a' ? 'a' : ''
+            })`,
+          }),
           espacoVazio,
           espacoVazio,
           espacoVazio,
@@ -438,7 +444,11 @@ function gen(dados) {
               line: 276,
             },
           }),
-          new paragrafo({ text: '(Assinatura do Comprador)' }),
+          new paragrafo({
+            text: `(Assinatura d${dados.genero2} Comprador${
+              dados.genero2 == 'a' ? 'a' : ''
+            })`,
+          }),
           espacoVazio,
           espacoVazio,
           espacoVazio,

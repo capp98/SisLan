@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
   <head>
     <title>Home</title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-    <link rel="stylesheet" href="../styles/pages.css" />
-    <script type="module" src="../scripts/compra-e-venda-imovel.js"></script>
+    <link rel="stylesheet" href="styles.css" />
+    <script type="module" src="script.js"></script>
   </head>
 
   <body>
@@ -14,130 +14,172 @@
 
       <form>
         <fieldset>
-          <legend>Vendedor(a)</legend>
+          <legend>Vendedores</legend>
+          <div class="vendedoresField">
+            <fieldset class="vendedores" id="vendedor1">
+              <legend>Vendedor(a)</legend>
 
-          <div class="div-input">
-            <input id="h" name="genero" type="radio" value="o" checked />
-            <label class="inline" for="h">Homem</label>
+              <input
+                id="vendedor-h"
+                name="vendedor-genero"
+                type="radio"
+                value="o"
+                checked
+              />
+              <label class="inline" for="vendedor-h">Homem</label>
 
-            <input id="m" name="genero" type="radio" value="a" />
-            <label class="inline" for="m">Mulher</label>
+              <input
+                id="vendedor-m"
+                name="vendedor-genero"
+                type="radio"
+                value="a"
+              />
+              <label class="inline" for="vendedor-m">Mulher</label>
+
+              <label for="name">Nome Completo*</label>
+              <input
+                id="name"
+                name="vendedor-nome"
+                type="text"
+                value="César"
+                required
+              />
+
+              <label for="rg">RG</label>
+              <input
+                class="rg"
+                id="rg"
+                name="vendedor-rg"
+                type="text"
+                required
+                maxlength="9"
+                value="1"
+              />
+
+              <label for="cpf">CPF</label>
+              <input
+                class="cpf"
+                id="cpf"
+                name="vendedor-cpf"
+                type="text"
+                required
+                maxlength="11"
+                value="1"
+              />
+            </fieldset>
           </div>
-
           <div class="div-input">
-            <label for="name">Nome Completo*</label>
-            <input id="name" name="nome" type="text" value="César" required />
-          </div>
-
-          <div class="div-input">
-            <label for="rg">RG</label>
             <input
-              class="rg"
-              id="rg"
-              name="rg"
-              type="text"
-              required
-              maxlength="9"
-              value="1"
+              type="button"
+              class="botaoAcao adicionarVendedor"
+              value="Adicionar Vendedor"
             />
           </div>
-
-          <div class="div-input">
-            <label for="cpf">CPF</label>
-            <input
-              class="cpf"
-              id="cpf"
-              name="cpf"
-              type="text"
-              required
-              maxlength="11"
-              value="1"
-            />
-          </div>
-
           <div class="div-input">
             <label for="cep">CEP</label>
-            <input id="cep" name="cep" type="text" />
+            <input id="cep" name="vendedorCep" type="text" />
           </div>
           <div class="div-input">
             <div class="endereco endereco">
               <label for="name">Endereço*</label>
-              <input id="endereco" name="endereco" type="text" />
+              <input id="endereco" name="vendedorEndereco" type="text" />
             </div>
           </div>
           <div class="div-endereco div-input">
             <div class="endereco numero">
               <label for="name">Número*</label>
-              <input id="numero" name="numero" type="text" />
+              <input id="numero" name="vendedorNumero" type="text" />
             </div>
             <div class="endereco bairro">
               <label for="bairro">Bairro*</label>
-              <input id="bairro" name="bairro" type="text" />
+              <input id="bairro" name="vendedorBairro" type="text" />
             </div>
           </div>
         </fieldset>
         <fieldset>
-          <legend>Comprador(a)</legend>
+          <legend>Compradores</legend>
+          <div class="compradoresField">
+            <fieldset class="compradores" id="comprador1">
+              <legend>Comprador(a)</legend>
 
-          <div class="div-input">
-            <input id="h2" name="genero2" type="radio" value="o" checked />
-            <label class="inline" for="h2">Homem</label>
+              <input
+                id="comprador-h"
+                name="comprador-genero"
+                type="radio"
+                value="o"
+                checked
+              />
+              <label class="inline" for="comprador-h">Homem</label>
 
-            <input id="m2" name="genero2" type="radio" value="a" />
-            <label class="inline" for="m2">Mulher</label>
+              <input
+                id="comprador-m"
+                name="comprador-genero"
+                type="radio"
+                value="a"
+              />
+              <label class="inline" for="comprador-m">Mulher</label>
+
+              <label for="name">Nome Completo*</label>
+              <input
+                id="name2"
+                name="comprador-nome"
+                type="text"
+                value="César"
+                required
+              />
+
+              <label for="rg">RG</label>
+              <input
+                class="rg"
+                id="rg"
+                name="comprador-rg"
+                type="text"
+                required
+                maxlength="9"
+                value="1"
+              />
+
+              <label for="cpf">CPF</label>
+              <input
+                class="cpf"
+                id="cpf"
+                name="comprador-cpf"
+                type="text"
+                required
+                maxlength="11"
+                value="1"
+              />
+            </fieldset>
           </div>
-
           <div class="div-input">
-            <label for="name2">Nome Completo*</label>
-            <input id="name2" name="nome2" type="text" required value="a" />
-          </div>
-
-          <div class="div-input">
-            <label for="rg2">RG</label>
             <input
-              class="rg"
-              id="rg2"
-              name="rg2"
-              type="text"
-              required
-              maxlength="9"
-              value="2"
+              type="button"
+              class="botaoAcao adicionarComprador"
+              value="Adicionar Comprador"
             />
           </div>
-
-          <div class="div-input">
-            <label for="cpf2">CPF</label>
-            <input
-              class="cpf"
-              id="cpf2"
-              name="cpf2"
-              type="text"
-              maxlength="11"
-              value="2"
-            />
-          </div>
-
           <div class="div-input">
             <label for="cep2">CEP</label>
-            <input id="cep2" name="cep2" type="text" />
+            <input id="cep2" name="compradorCep" type="text" />
           </div>
           <div class="div-input">
             <div class="endereco endereco">
               <label for="endereco2">Endereço*</label>
-              <input id="endereco2" name="endereco2" type="text" />
+              <input id="endereco2" name="compradorEndereco" type="text" />
             </div>
           </div>
           <div class="div-endereco div-input">
             <div class="endereco numero">
               <label for="numero2">Número*</label>
-              <input id="numero2" name="numero2" type="text" />
+              <input id="numero2" name="compradorNumero" type="text" />
             </div>
             <div class="endereco bairro">
               <label for="bairro2">Bairro*</label>
-              <input id="bairro2" name="bairro2" type="text" />
+              <input id="bairro2" name="compradorBairro" type="text" />
             </div>
           </div>
         </fieldset>
+
         <fieldset>
           <legend>Imóvel</legend>
 

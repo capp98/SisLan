@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <title>Home</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="../styles/pages.css" />
+    <script type="module" src="../scripts/declaracaoDeTrabalho.js"></script>
+  </head>
+
+  <body>
+    <section class="contact-form">
+      <h1>Declaração de Trabalho</h1>
+
+      <form>
+        <fieldset>
+          <legend>Declarante</legend>
+
+          <div class="div-input">
+            <input
+              id="h"
+              name="declaranteGenero"
+              type="radio"
+              value="o"
+              checked
+            />
+            <label class="inline" for="h">Homem</label>
+
+            <input id="m" name="declaranteGenero" type="radio" value="a" />
+            <label class="inline" for="m">Mulher</label>
+          </div>
+
+          <div class="div-input">
+            <label for="name">Nome Completo*</label>
+            <input id="name" name="declaranteNome" type="text" required />
+          </div>
+
+          <div class="div-input">
+            <label for="rg">RG</label>
+            <input
+              placeholder="Apenas números"
+              class="rg"
+              id="rg"
+              name="declaranteRg"
+              type="text"
+              required
+              maxlength="9"
+            />
+          </div>
+
+          <div class="div-input">
+            <label for="cpf">CPF</label>
+            <input
+              placeholder="Apenas números"
+              class="cpf"
+              id="cpf"
+              name="declaranteCpf"
+              type="text"
+              required
+              maxlength="11"
+            />
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend>Declarado</legend>
+
+          <div class="div-input">
+            <input
+              id="h2"
+              name="declaradoGenero"
+              type="radio"
+              value="o"
+              checked
+            />
+            <label class="inline" for="h2">Homem</label>
+
+            <input id="m2" name="declaradoGenero" type="radio" value="a" />
+            <label class="inline" for="m2">Mulher</label>
+          </div>
+
+          <div class="div-input">
+            <label for="name2">Nome Completo*</label>
+            <input id="name2" name="declaradoNome" type="text" required />
+          </div>
+
+          <div class="div-input">
+            <label for="rg2">RG</label>
+            <input
+              placeholder="Apenas números"
+              class="rg"
+              id="rg2"
+              name="declaradoRg"
+              type="text"
+              required
+              maxlength="9"
+            />
+          </div>
+
+          <div class="div-input">
+            <label for="cpf2">CPF</label>
+            <input
+              placeholder="Apenas números"
+              class="cpf"
+              id="cpf2"
+              name="declaradoCpf"
+              type="text"
+              maxlength="11"
+            />
+          </div>
+
+          <div class="div-input">
+            <label for="declaradoCargo">Cargo</label>
+            <input
+              id="declaradoCargo"
+              name="declaradoCargo"
+              type="text"
+              required
+            />
+          </div>
+
+          <div class="div-input doisCampos">
+            <div>
+              <label for="diaInicio">Dia Início</label>
+              <input
+                placeholder="Segunda"
+                id="diaInicio"
+                name="diaInicio"
+                type="text"
+                required
+              />
+            </div>
+            <div>
+              <label for="diaTermino">Dia Término</label>
+              <input
+                placeholder="Sábado"
+                id="diaTermino"
+                name="diaTermino"
+                type="text"
+                required
+              />
+            </div>
+          </div>
+          <div class="div-input doisCampos">
+            <div>
+              <label for="horaInicio">Hora Início</label>
+              <input
+                id="horaInicio"
+                name="horaInicio"
+                placeholder="10:00"
+                type="text"
+                required
+              />
+            </div>
+            <div>
+              <label for="horaTermino">Hora Término</label>
+              <input
+                id="horaTermino"
+                placeholder="18:00"
+                name="horaTermino"
+                type="text"
+                required
+              />
+            </div>
+          </div>
+        </fieldset>
+        <button type="submit">Criar</button>
+      </form>
+    </section>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+    <script src="https://unpkg.com/docx@7.1.0/build/index.js"></script>
+  </body>
+</html>

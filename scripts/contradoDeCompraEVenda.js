@@ -1,26 +1,15 @@
 let compradorIndex = 1;
 let vendedorIndex = 1;
 
-let meses = [
-  'Janeiro',
-  'Fevereiro',
-  'Março',
-  'Abril',
-  'Maio',
-  'Junho',
-  'Julho',
-  'Agosto',
-  'Setembro',
-  'Outubro',
-  'Novembro',
-  'Dezembro',
-];
+import {
+  meses,
+  convertePt,
+  formataCPF,
+  formataRG,
+  formataTexto,
+} from './utils.js';
 
 const convertePt = (valor) => valor * 20;
-
-const resetaCampo = (event) => {
-  event.target.value = event.target.value.replace(/\D+/g, '');
-};
 
 //#region SELETORES E EVENTOS
 
@@ -45,11 +34,6 @@ cepTres.addEventListener('focusout', formataCEP);
 cepTres.addEventListener('focus', resetaCampo);
 cepTres.addEventListener('keyup', handleCEPTres);
 
-const name = document.getElementById('name');
-name.addEventListener('focusout', formataNome);
-const name2 = document.getElementById('name2');
-name2.addEventListener('focusout', formataNome);
-
 const endereco = document.getElementById('endereco');
 endereco.addEventListener('keydown', handleEndereco);
 
@@ -58,16 +42,6 @@ endereco.addEventListener('keydown', handleEndereco);
 
 const enderecoTres = document.getElementById('endereco3');
 endereco.addEventListener('keydown', handleEndereco);
-
-Array.from(document.getElementsByClassName('rg')).map((el) => {
-  el.addEventListener('focus', resetaCampo);
-  el.addEventListener('focusout', formataRG);
-});
-
-Array.from(document.getElementsByClassName('cpf')).map((el) => {
-  el.addEventListener('focus', resetaCampo);
-  el.addEventListener('focusout', formataCPF);
-});
 
 const bAdicionarVendedor = document.querySelector('input.adicionarVendedor');
 bAdicionarVendedor.addEventListener('click', addVendedor);
@@ -115,7 +89,7 @@ function addVendedor() {
 
   let labelNome = document.createElement('label');
   let inputNome = document.createElement('input');
-  inputNome.addEventListener('focusout', formataNome);
+  inputNome.addEventListener('focusout', formataTexto);
 
   inputNome.id = `nome${vendedorIndex}`;
 
@@ -203,7 +177,7 @@ function addComprador() {
 
   let labelNome = document.createElement('label');
   let inputNome = document.createElement('input');
-  inputNome.addEventListener('focusout', formataNome);
+  inputNome.addEventListener('focusout', formataTexto);
 
   inputNome.id = `nome${compradorIndex}`;
 
@@ -267,22 +241,6 @@ function handleEndereco(event) {
         cep.value = json[0].cep;
       });
   }
-}
-
-function formataCEP({ target }) {
-  target.value = target.value.replace(/(\d{5})(\d{3})/, '$1-$2');
-}
-
-function formataNome({ target }) {
-  let nome = target.value.split(' ');
-  let conjunto = [];
-
-  nome.forEach((n) => {
-    if (!n.match(/\bd[a,o,e][s]?\b/g))
-      conjunto.push(n.charAt(0).toUpperCase() + n.slice(1));
-    else conjunto.push(n);
-  });
-  target.value = conjunto.join(' ');
 }
 
 async function handleCEP(event) {
@@ -363,30 +321,6 @@ function handleFormSubmit(event) {
   console.log(formJSON);
   gen(formJSON);
 }
-
-//#region MANIPULA CAMPOS
-
-function formataRG(event) {
-  let campoRG = event.target;
-  let rg = campoRG.value.replace(/\D+/g, '');
-
-  campoRG.value =
-    rg.length == 9
-      ? rg.replace(/(\d{2})(\d{3})(\d{3})(\d{1})/, '$1.$2.$3-$4')
-      : rg;
-}
-
-function formataCPF(event) {
-  let campoCPF = event.target;
-  let cpf = campoCPF.value.replace(/\D+/g, '');
-
-  campoCPF.value =
-    cpf.length == 11
-      ? cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4')
-      : cpf;
-}
-
-//#endregion
 
 function gen(dados) {
   const texto = docx.TextRun;

@@ -1,62 +1,7 @@
-let meses = [
-  'Janeiro',
-  'Fevereiro',
-  'Março',
-  'Abril',
-  'Maio',
-  'Junho',
-  'Julho',
-  'Agosto',
-  'Setembro',
-  'Outubro',
-  'Novembro',
-  'Dezembro',
-];
-
-const convertePt = (valor) => valor * 20;
-
-const resetaCampo = (event) => {
-  event.target.value = event.target.value.replace(/\D+/g, '');
-};
-
-//#region SELETORES E EVENTOS
+import { meses } from './utils';
 
 const form = document.querySelector('.contact-form');
 form.addEventListener('submit', handleFormSubmit);
-
-document.getElementById('name').addEventListener('focusout', formataNome);
-document.getElementById('name2').addEventListener('focusout', formataNome);
-document
-  .getElementById('declaradoCargo')
-  .addEventListener('focusout', formataNome);
-document.getElementById('diaInicio').addEventListener('focusout', formataNome);
-document.getElementById('diaTermino').addEventListener('focusout', formataNome);
-
-Array.from(document.getElementsByClassName('rg')).map((el) => {
-  el.addEventListener('focus', resetaCampo);
-  el.addEventListener('focusout', formataRG);
-});
-
-Array.from(document.getElementsByClassName('cpf')).map((el) => {
-  el.addEventListener('focus', resetaCampo);
-  el.addEventListener('focusout', formataCPF);
-});
-
-//#endregion
-
-//HANDLERS
-
-function formataNome({ target }) {
-  let nome = target.value.split(' ');
-  let conjunto = [];
-
-  nome.forEach((n) => {
-    if (!n.match(/\bd[a,o,e][s]?\b/g))
-      conjunto.push(n.charAt(0).toUpperCase() + n.slice(1));
-    else conjunto.push(n);
-  });
-  target.value = conjunto.join(' ');
-}
 
 function handleFormSubmit(event) {
   event.preventDefault();
@@ -67,30 +12,6 @@ function handleFormSubmit(event) {
 
   gen(formJSON);
 }
-
-//#region MANIPULA CAMPOS
-
-function formataRG(event) {
-  let campoRG = event.target;
-  let rg = campoRG.value.replace(/\D+/g, '');
-
-  campoRG.value =
-    rg.length == 9
-      ? rg.replace(/(\d{2})(\d{3})(\d{3})(\d{1})/, '$1.$2.$3-$4')
-      : rg;
-}
-
-function formataCPF(event) {
-  let campoCPF = event.target;
-  let cpf = campoCPF.value.replace(/\D+/g, '');
-
-  campoCPF.value =
-    cpf.length == 11
-      ? cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4')
-      : cpf;
-}
-
-//#endregion
 
 function gen(dados) {
   const texto = docx.TextRun;

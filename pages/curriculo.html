@@ -5,6 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <link rel="stylesheet" href="../styles/pages.css" />
+    <script type="module" src="../scripts/utils.js"></script>
     <script type="module" src="../scripts/curriculo.js"></script>
   </head>
 
@@ -26,13 +27,20 @@
 
           <div class="div-input">
             <label for="name">Nome Completo*</label>
-            <input id="name" name="nome" type="text" required />
+            <input
+              class="formataTexto"
+              id="name"
+              name="nome"
+              type="text"
+              required
+            />
           </div>
 
           <div class="div-input">
             <label for="dataNasc">Data de Nascimento*</label>
             <input
               id="dataNasc"
+              class="formataData"
               name="dataNasc"
               type="text"
               required
@@ -67,7 +75,12 @@
 
               <div class="div-input">
                 <div class="telefones">
-                  <input name="telefone" type="text" maxlength="15" />
+                  <input
+                    class="formataTelefone"
+                    name="telefone"
+                    type="text"
+                    maxlength="15"
+                  />
                 </div>
                 <input
                   type="button"
@@ -169,6 +182,7 @@
             <label for="formEscolar">Formação Escolar*</label>
             <input
               id="formEscolar"
+              class="formataTexto"
               name="formacaoEscolar"
               type="text"
               required
@@ -184,13 +198,13 @@
               <legend>Curso 1</legend>
 
               <label for="curso-local">Local</label>
-              <input id="curso-local" type="text" />
+              <input class="formataTexto" id="curso-local" type="text" />
 
               <label for="curso-curso">Curso</label>
-              <input id="curso-curso" type="text" />
+              <input class="formataTexto" id="curso-curso" type="text" />
 
               <label for="curso-periodo">Período</label>
-              <input id="curso-periodo" type="text" />
+              <input class="formataData" id="curso-periodo" type="text" />
             </fieldset>
           </div>
           <div class="div-input">
@@ -207,14 +221,14 @@
               <legend>Trabalho 1</legend>
 
               <label for="trabalho-local">Local</label>
-              <input id="trabalho-local" type="text" />
+              <input class="formataTexto" id="trabalho-local" type="text" />
 
               <label for="trabalho-cargo">Cargo</label>
-              <input id="trabalho-cargo" type="text" />
+              <input class="formataTexto" id="trabalho-cargo" type="text" />
               <!-- <ul class="list"></ul> -->
 
               <label for="trabalho-periodo">Período</label>
-              <input id="trabalho-periodo" type="text" />
+              <input class="formataData" id="trabalho-periodo" type="text" />
             </fieldset>
           </div>
           <div class="div-input">

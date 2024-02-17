@@ -1,26 +1,4 @@
-let cursoIndex = 1;
-let trabalhoIndex = 1;
-
-let meses = [
-  'Janeiro',
-  'Fevereiro',
-  'Março',
-  'Abril',
-  'Maio',
-  'Junho',
-  'Julho',
-  'Agosto',
-  'Setembro',
-  'Outubro',
-  'Novembro',
-  'Dezembro',
-];
-
-const convertePt = (valor) => valor * 20;
-
-const resetaCampo = (event) => {
-  event.target.value = event.target.value.replace(/\D+/g, '');
-};
+import { meses } from './utils.js';
 
 //#region SELETORES E EVENTOS
 
@@ -32,23 +10,8 @@ cep.addEventListener('focusout', formataCEP);
 cep.addEventListener('focus', resetaCampo);
 cep.addEventListener('keyup', handleCEP);
 
-const name = document.getElementById('name');
-name.addEventListener('focusout', formataNome);
-const name2 = document.getElementById('name2');
-name2.addEventListener('focusout', formataNome);
-
 const endereco = document.getElementById('endereco');
 endereco.addEventListener('keydown', handleEndereco);
-
-Array.from(document.getElementsByClassName('rg')).map((el) => {
-  el.addEventListener('focus', resetaCampo);
-  el.addEventListener('focusout', formataRG);
-});
-
-Array.from(document.getElementsByClassName('cpf')).map((el) => {
-  el.addEventListener('focus', resetaCampo);
-  el.addEventListener('focusout', formataCPF);
-});
 
 //#endregion
 
@@ -70,18 +33,6 @@ function handleEndereco(event) {
 
 function formataCEP({ target }) {
   target.value = target.value.replace(/(\d{5})(\d{3})/, '$1-$2');
-}
-
-function formataNome({ target }) {
-  let nome = target.value.split(' ');
-  let conjunto = [];
-
-  nome.forEach((n) => {
-    if (!n.match(/\bd[a,o,e][s]?\b/g))
-      conjunto.push(n.charAt(0).toUpperCase() + n.slice(1));
-    else conjunto.push(n);
-  });
-  target.value = conjunto.join(' ');
 }
 
 async function handleCEP(event) {
@@ -107,30 +58,6 @@ function handleFormSubmit(event) {
 
   gen(formJSON);
 }
-
-//#region MANIPULA CAMPOS
-
-function formataRG(event) {
-  let campoRG = event.target;
-  let rg = campoRG.value.replace(/\D+/g, '');
-
-  campoRG.value =
-    rg.length == 9
-      ? rg.replace(/(\d{2})(\d{3})(\d{3})(\d{1})/, '$1.$2.$3-$4')
-      : rg;
-}
-
-function formataCPF(event) {
-  let campoCPF = event.target;
-  let cpf = campoCPF.value.replace(/\D+/g, '');
-
-  campoCPF.value =
-    cpf.length == 11
-      ? cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4')
-      : cpf;
-}
-
-//#endregion
 
 function gen(dados) {
   const texto = docx.TextRun;

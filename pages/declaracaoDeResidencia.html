@@ -5,6 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <link rel="stylesheet" href="../styles/pages.css" />
+    <script type="module" src="../scripts/utils.js"></script>
     <script type="module" src="../scripts/declaracaoDeResidencia.js"></script>
   </head>
 
@@ -49,13 +50,19 @@
 
           <div class="div-input">
             <label for="name">Nome Completo*</label>
-            <input id="name" name="nome" type="text" required />
+            <input
+              class="formataTexto"
+              id="name"
+              name="nome"
+              type="text"
+              required
+            />
           </div>
 
           <div class="div-input">
             <label for="rg">RG</label>
             <input
-              class="rg"
+              class="formataRG"
               id="rg"
               name="rg"
               type="text"
@@ -67,7 +74,7 @@
           <div class="div-input">
             <label for="cpf">CPF</label>
             <input
-              class="cpf"
+              class="formataCPF"
               id="cpf"
               name="cpf"
               type="text"
@@ -89,13 +96,19 @@
 
           <div class="div-input">
             <label for="name2">Nome Completo*</label>
-            <input id="name2" name="nome2" type="text" required />
+            <input
+              class="formataTexto"
+              id="name2"
+              name="nome2"
+              type="text"
+              required
+            />
           </div>
 
           <div class="div-input">
             <label for="rg2">RG</label>
             <input
-              class="rg"
+              class="formataRG"
               id="rg2"
               name="rg2"
               type="text"
@@ -107,7 +120,7 @@
           <div class="div-input">
             <label for="cpf2">CPF</label>
             <input
-              class="cpf"
+              class="formataCPF"
               id="cpf2"
               name="cpf2"
               type="text"

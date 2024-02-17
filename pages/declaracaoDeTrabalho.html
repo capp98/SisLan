@@ -5,6 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <link rel="stylesheet" href="../styles/pages.css" />
+    <script type="module" src="../scripts/utils.js"></script>
     <script type="module" src="../scripts/declaracaoDeTrabalho.js"></script>
   </head>
 
@@ -32,14 +33,20 @@
 
           <div class="div-input">
             <label for="name">Nome Completo*</label>
-            <input id="name" name="declaranteNome" type="text" required />
+            <input
+              class="formataTexto"
+              id="name"
+              name="declaranteNome"
+              type="text"
+              required
+            />
           </div>
 
           <div class="div-input">
             <label for="rg">RG</label>
             <input
               placeholder="Apenas números"
-              class="rg"
+              class="formataRG"
               id="rg"
               name="declaranteRg"
               type="text"
@@ -52,7 +59,7 @@
             <label for="cpf">CPF</label>
             <input
               placeholder="Apenas números"
-              class="cpf"
+              class="formataCPF"
               id="cpf"
               name="declaranteCpf"
               type="text"
@@ -80,14 +87,20 @@
 
           <div class="div-input">
             <label for="name2">Nome Completo*</label>
-            <input id="name2" name="declaradoNome" type="text" required />
+            <input
+              class="formataTexto"
+              id="name2"
+              name="declaradoNome"
+              type="text"
+              required
+            />
           </div>
 
           <div class="div-input">
             <label for="rg2">RG</label>
             <input
               placeholder="Apenas números"
-              class="rg"
+              class="formataRG"
               id="rg2"
               name="declaradoRg"
               type="text"
@@ -100,7 +113,7 @@
             <label for="cpf2">CPF</label>
             <input
               placeholder="Apenas números"
-              class="cpf"
+              class="formataCPF"
               id="cpf2"
               name="declaradoCpf"
               type="text"
@@ -111,6 +124,7 @@
           <div class="div-input">
             <label for="declaradoCargo">Cargo</label>
             <input
+              class="formataTexto"
               id="declaradoCargo"
               name="declaradoCargo"
               type="text"
@@ -122,6 +136,7 @@
             <div>
               <label for="diaInicio">Dia Início</label>
               <input
+                class="formataTexto"
                 placeholder="Segunda"
                 id="diaInicio"
                 name="diaInicio"
@@ -132,6 +147,7 @@
             <div>
               <label for="diaTermino">Dia Término</label>
               <input
+                class="formataTexto"
                 placeholder="Sábado"
                 id="diaTermino"
                 name="diaTermino"

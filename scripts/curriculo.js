@@ -1,9 +1,12 @@
 let cursoIndex = 1;
 let trabalhoIndex = 1;
 
-const resetaCampo = ({ target }) => {
-  target.value = target.value.replace(/\D+/g, '');
-};
+import {
+  formataTexto,
+  formataData,
+  resetaCampo,
+  formataTelefone,
+} from './utils.js';
 
 //#region SELETORES E EVENTOS
 const divTelefones = document.querySelector('div.telefones');
@@ -12,33 +15,6 @@ const divTrabalhos = document.querySelector('div.trabalhosField');
 
 const form = document.querySelector('.contact-form');
 form.addEventListener('submit', handleFormSubmit);
-
-document
-  .getElementById('formEscolar')
-  .addEventListener('focusout', formataNome);
-
-document.getElementById('name').addEventListener('focusout', formataNome);
-document
-  .getElementById('curso-local')
-  .addEventListener('focusout', formataNome);
-
-document
-  .getElementById('curso-curso')
-  .addEventListener('focusout', formataNome);
-
-document
-  .getElementById('curso-periodo')
-  .addEventListener('focusout', formataPeriodo);
-
-document
-  .getElementById('trabalho-local')
-  .addEventListener('focusout', formataNome);
-document
-  .getElementById('trabalho-cargo')
-  .addEventListener('focusout', formataNome);
-document
-  .getElementById('trabalho-periodo')
-  .addEventListener('focusout', formataPeriodo);
 
 const cep = document.getElementById('cep');
 cep.addEventListener('keyup', handleCEP);
@@ -152,55 +128,6 @@ function handleFormSubmit(event) {
 
 //#region MANIPULA CAMPOS
 
-function formataNome({ target }) {
-  let nome = target.value.split(' ');
-  let conjunto = [];
-
-  nome.forEach((n) => {
-    if (!n.match(/\bd[a,o,e][s]?|^[e]$\b/g))
-      conjunto.push(n.charAt(0).toUpperCase() + n.slice(1));
-    else conjunto.push(n);
-  });
-  target.value = conjunto.join(' ');
-}
-
-function formataPeriodo({ target }) {
-  let periodo = target.value;
-
-  let reg = RegExp(/^([0-9]{2})([0-9]{2})([0-9]{4})$/g);
-
-  let a = periodo
-    .split(' ')
-    .map((i) =>
-      reg.test(i) ? i.replace(/([0-9]{2})([0-9]{2})([0-9]{4})/, '$1/$2/$3') : i
-    )
-    .join(' ');
-
-  target.value = a;
-}
-
-function formataData(event) {
-  let dataDeNascimento = event.target;
-  let data = dataDeNascimento.value.replace(/\D+/g, '');
-
-  dataDeNascimento.value =
-    data.length == 8 ? data.replace(/(\d{2})(\d{2})(\d{4})/, '$1/$2/$3') : data;
-}
-
-function formataTelefone(event) {
-  let telefoneCampo = event.target;
-  let telefone = telefoneCampo.value.replace(/\D+/g, '');
-
-  telefone =
-    telefone.length < 9
-      ? telefone.replace(/(\d{4})(\d{4})/, '$1-$2')
-      : telefone.length == 9
-      ? telefone.replace(/(\d{5})(\d{4})/, '$1-$2')
-      : telefone.replace(/(\d{2})(\d{5})(\d{2})/, '($1) $2-$3');
-
-  telefoneCampo.value = telefone;
-}
-
 function addTelefone() {
   let telefone = document.createElement('input');
   telefone.type = 'text';
@@ -230,20 +157,20 @@ function addCurso() {
   let labelLocal = document.createElement('label');
   let inputLocal = document.createElement('input');
   inputLocal.id = `local${cursoIndex}`;
-  inputLocal.addEventListener('focusout', formataNome);
+  inputLocal.addEventListener('focusout', formataTexto);
   labelLocal.htmlFor = inputLocal.id;
   labelLocal.innerText = 'Local';
 
   let labelCurso = document.createElement('label');
   let inputCurso = document.createElement('input');
-  inputCurso.addEventListener('focusout', formataNome);
+  inputCurso.addEventListener('focusout', formataTexto);
   inputCurso.id = `curso${cursoIndex}`;
   labelCurso.htmlFor = inputCurso.id;
   labelCurso.innerText = 'Curso';
 
   let labelPeriodo = document.createElement('label');
   let inputPeriodo = document.createElement('input');
-  inputPeriodo.addEventListener('focusout', formataPeriodo);
+  inputPeriodo.addEventListener('focusout', formataData);
   inputPeriodo.id = `periodo${cursoIndex}`;
   labelPeriodo.htmlFor = inputPeriodo.id;
   labelPeriodo.innerText = 'Período';
@@ -274,7 +201,7 @@ function addTrabalho() {
 
   let labelLocal = document.createElement('label');
   let inputLocal = document.createElement('input');
-  inputLocal.addEventListener('focusout', formataNome);
+  inputLocal.addEventListener('focusout', formataTexto);
 
   inputLocal.id = `local${trabalhoIndex}`;
 
@@ -283,7 +210,7 @@ function addTrabalho() {
 
   let labelCargo = document.createElement('label');
   let inputCargo = document.createElement('input');
-  inputCargo.addEventListener('focusout', formataNome);
+  inputCargo.addEventListener('focusout', formataTexto);
 
   inputCargo.id = `cargo${trabalhoIndex}`;
 
@@ -294,7 +221,7 @@ function addTrabalho() {
   let inputPeriodo = document.createElement('input');
 
   inputPeriodo.id = `periodo${trabalhoIndex}`;
-  inputPeriodo.addEventListener('focusout', formataPeriodo);
+  inputPeriodo.addEventListener('focusout', formataData);
 
   labelPeriodo.htmlFor = inputPeriodo.id;
   labelPeriodo.innerText = 'Período';

@@ -190,16 +190,22 @@ input.botaoAcao:nth-child(even) {
   cursor: pointer;
 }
 
-.div-endereco * {
+.div-endereco *,
+.doisCampos {
   width: auto;
   display: inline-block;
 }
 
-.div-endereco {
+.div-endereco,
+.doisCampos {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 0.25rem;
+}
+
+.doisCampos > * {
+  margin-top: 0px;
 }
 
 div.endereco.bairro,

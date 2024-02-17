@@ -12,11 +12,7 @@ let documents = await fetch(
   .then((response) => response.json())
   .then((data) => data);
 
-let modelos = await fetch('https://sislan-api.onrender.com/services/modelo')
-  .then((response) => response.json())
-  .then((data) => data);
-
-let documentos = [...documents, ...modelos];
+let documentos = [...documents];
 
 console.log(documentos)
 
@@ -54,7 +50,6 @@ adicionaDocumentos();
 
 adicionaServicos();
 
-// adicionaModelos();
 
 function ordenaPorNome(a, b) {
   const nomeA = a.nome.toUpperCase();
@@ -65,24 +60,24 @@ function ordenaPorNome(a, b) {
   return 0;
 }
 
-function adicionaModelos() {
-  let div = document.createElement('div');
-  let servicosDiv = document.getElementById('documentos');
-  div.className = 'links';
+// function adicionaModelos() {
+//   let div = document.createElement('div');
+//   let servicosDiv = document.getElementById('documentos');
+//   div.className = 'links';
 
-  let link = null;
-  modelos.forEach((modelo) => {
-    link = document.createElement('a');
+//   let link = null;
+//   modelos.forEach((modelo) => {
+//     link = document.createElement('a');
 
-    link.dataset.service = modelo.url;
-    link.dataset.type = modelo.servico;
-    link.innerHTML = modelo.nome;
-    link.addEventListener('click', downloadDocument);
+//     link.dataset.service = modelo.url;
+//     link.dataset.type = modelo.servico;
+//     link.innerHTML = modelo.nome;
+//     link.addEventListener('click', downloadDocument);
 
-    div.appendChild(link);
-  });
-  servicosDiv.appendChild(div);
-}
+//     div.appendChild(link);
+//   });
+//   servicosDiv.appendChild(div);
+// }
 
 function adicionaBoletos() {
   let div = document.createElement('div');

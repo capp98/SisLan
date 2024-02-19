@@ -112,4 +112,5 @@ export {
   formataCPF,
   formataRG,
   formataTexto,
+  resetaCampo,
 };

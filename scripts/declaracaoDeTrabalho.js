@@ -1,4 +1,4 @@
-import { meses } from './utils';
+import { meses } from './utils.js';
 
 const form = document.querySelector('.contact-form');
 form.addEventListener('submit', handleFormSubmit);

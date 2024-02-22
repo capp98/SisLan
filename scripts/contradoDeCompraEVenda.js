@@ -5,6 +5,7 @@ import {
   meses,
   convertePt,
   formataCPF,
+  formataCEP,
   formataRG,
   formataTexto,
 } from './utils.js';

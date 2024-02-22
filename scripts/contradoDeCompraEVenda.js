@@ -9,8 +9,6 @@ import {
   formataTexto,
 } from './utils.js';
 
-const convertePt = (valor) => valor * 20;
-
 //#region SELETORES E EVENTOS
 
 const divCompradores = document.querySelector('div.compradoresField');

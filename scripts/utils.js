@@ -31,19 +31,20 @@ function formataTelefone(event) {
   telefoneCampo.value = telefone;
 }
 
-function formataData({ target }) {
-  let periodo = target.value;
+function formataData(this) {
+  let dataCampo = this
+  let dataTexto = dataCampo.value;
 
   let reg = RegExp(/^([0-9]{2})([0-9]{2})([0-9]{4})$/g);
 
-  let a = periodo
+  let dataFormatada = dataTexto
     .split(' ')
     .map((i) =>
       reg.test(i) ? i.replace(/([0-9]{2})([0-9]{2})([0-9]{4})/, '$1/$2/$3') : i
     )
     .join(' ');
 
-  target.value = a;
+  dataCampo.value = dataFormatada;
 }
 
 function formataRG(event) {
@@ -120,6 +121,12 @@ function handleEndereco(cepCampo, enderecoCampo, bairroCampo) {
 Array.from(document.getElementsByClassName('formataTexto')).map(
   (campoTexto) => {
     campoTexto.addEventListener('focusout', formataTexto);
+  }
+);
+
+Array.from(document.getElementsByClassName('formataData')).map(
+  (campoData) => {
+    campoData.addEventListener('focusout', formataData);
   }
 );
 

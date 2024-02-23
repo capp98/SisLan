@@ -2,11 +2,12 @@ let cursoIndex = 1;
 let trabalhoIndex = 1;
 
 import {
-  formataTexto,
   formataTelefone,
+  formataData,
+  formataTexto,
+  resetaCampo,
   handleCEP,
   handleEndereco,
-  resetaCampo,
 } from './utils.js';
 
 //#region SELETORES E EVENTOS

@@ -82,9 +82,9 @@ function formataTexto({ target }) {
   target.value = conjunto.join(' ');
 }
 
-function formataCEP({ target }) {
-  target.value = target.value.replace(/(\d{5})(\d{3})/, '$1-$2');
-}
+// function formataCEP({ target }) {
+//   target.value = target.value.replace(/(\d{5})(\d{3})/, '$1-$2');
+// }
 
 //#endregion
 
@@ -98,6 +98,7 @@ async function handleCEP(cepCampo, enderecoCampo, bairroCampo) {
         enderecoCampo.value = json.logradouro;
         bairroCampo.value = json.bairro;
       });
+    cepCampo.value = cepCampo.value.replace(/(\d{5})(\d{3})/, '$1-$2');
   }
 }
 
@@ -111,9 +112,9 @@ function handleEndereco(cepCampo, enderecoCampo, bairroCampo) {
     });
 }
 
-Array.from(document.getElementsByClassName('formataCEP')).map((campoCep) => {
-  campoCep.addEventListener('focusout', formataCEP);
-});
+// Array.from(document.getElementsByClassName('formataCEP')).map((campoCep) => {
+//   campoCep.addEventListener('focusout', formataCEP);
+// });
 
 Array.from(document.getElementsByClassName('formataTexto')).map(
   (campoTexto) => {

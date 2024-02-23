@@ -3,6 +3,7 @@ let trabalhoIndex = 1;
 
 import {
   formataTexto,
+  formataTelefone,
   handleCEP,
   handleEndereco,
   resetaCampo,

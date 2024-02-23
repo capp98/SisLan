@@ -110,6 +110,7 @@ function handleEndereco(cepCampo, enderecoCampo, bairroCampo) {
       bairroCampo.value = json[0].bairro;
       cepCampo.value = json[0].cep;
     });
+  cepCampo.value = cepCampo.value.replace(/(\d{5})(\d{3})/, '$1-$2');
 }
 
 // Array.from(document.getElementsByClassName('formataCEP')).map((campoCep) => {

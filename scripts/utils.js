@@ -31,8 +31,8 @@ function formataTelefone(event) {
   telefoneCampo.value = telefone;
 }
 
-function formataData(this) {
-  let dataCampo = this
+function formataData({ target }) {
+  let dataCampo = target;
   let dataTexto = dataCampo.value;
 
   let reg = RegExp(/^([0-9]{2})([0-9]{2})([0-9]{4})$/g);
@@ -124,11 +124,9 @@ Array.from(document.getElementsByClassName('formataTexto')).map(
   }
 );
 
-Array.from(document.getElementsByClassName('formataData')).map(
-  (campoData) => {
-    campoData.addEventListener('focusout', formataData);
-  }
-);
+Array.from(document.getElementsByClassName('formataData')).map((campoData) => {
+  campoData.addEventListener('focusout', formataData);
+});
 
 Array.from(document.getElementsByClassName('formataRG')).map((el) => {
   el.addEventListener('focus', resetaCampo);

@@ -5,9 +5,11 @@ import {
   meses,
   convertePt,
   formataCPF,
-  formataCEP,
   formataRG,
   formataTexto,
+  resetaCampo,
+  handleCEP,
+  handleEndereco,
 } from './utils.js';
 
 //#region SELETORES E EVENTOS
@@ -18,29 +20,39 @@ const divVendedores = document.querySelector('div.vendedoresField');
 const form = document.querySelector('.contact-form');
 form.addEventListener('submit', handleFormSubmit);
 
-const cep = document.getElementById('cep');
-cep.addEventListener('focusout', formataCEP);
-cep.addEventListener('focus', resetaCampo);
-cep.addEventListener('keyup', handleCEP);
+const cep = document.getElementById('cep1');
+const endereco = document.getElementById('endereco1');
+const bairro = document.getElementById('bairro1');
 
 const cepDois = document.getElementById('cep2');
-cepDois.addEventListener('focusout', formataCEP);
-cepDois.addEventListener('focus', resetaCampo);
-cepDois.addEventListener('keyup', handleCEPDois);
+const enderecoDois = document.getElementById('endereco2');
+const bairroDois = document.getElementById('bairro2');
 
 const cepTres = document.getElementById('cep3');
-cepTres.addEventListener('focusout', formataCEP);
-cepTres.addEventListener('focus', resetaCampo);
-cepTres.addEventListener('keyup', handleCEPTres);
-
-const endereco = document.getElementById('endereco');
-endereco.addEventListener('keydown', handleEndereco);
-
-const enderecoDois = document.getElementById('endereco2');
-endereco.addEventListener('keydown', handleEndereco);
-
 const enderecoTres = document.getElementById('endereco3');
-endereco.addEventListener('keydown', handleEndereco);
+const bairroTres = document.getElementById('bairro3');
+
+cep.addEventListener('focus', resetaCampo);
+cep.addEventListener('keyup', () => handleCEP(cep, endereco, bairro));
+endereco.addEventListener('focusout', () =>
+  handleEndereco(cep, endereco, bairro)
+);
+
+cepDois.addEventListener('focus', resetaCampo);
+cepDois.addEventListener('keyup', () =>
+  handleCEP(cepDois, enderecoDois, bairroDois)
+);
+enderecoDois.addEventListener('focusout', () =>
+  handleEndereco(cepDois, enderecoDois, bairroDois)
+);
+
+cepTres.addEventListener('focus', resetaCampo);
+cepTres.addEventListener('keyup', () =>
+  handleCEP(cepTres, enderecoTres, bairroTres)
+);
+enderecoTres.addEventListener('focusout', () =>
+  handleEndereco(cepTres, enderecoTres, bairroTres)
+);
 
 const bAdicionarVendedor = document.querySelector('input.adicionarVendedor');
 bAdicionarVendedor.addEventListener('click', addVendedor);

@@ -82,9 +82,38 @@ function formataTexto({ target }) {
   target.value = conjunto.join(' ');
 }
 
+function formataCEP({ target }) {
+  target.value = target.value.replace(/(\d{5})(\d{3})/, '$1-$2');
+}
+
 //#endregion
 
 //#region Handlers
+
+async function handleCEP(cepCampo, enderecoCampo, bairroCampo) {
+  if (cepCampo.value.length == 8) {
+    fetch(`https://viacep.com.br/ws/${cepCampo.value}/json/`)
+      .then((res) => res.json())
+      .then((json) => {
+        enderecoCampo.value = json.logradouro;
+        bairroCampo.value = json.bairro;
+      });
+  }
+}
+
+function handleEndereco(cepCampo, enderecoCampo, bairroCampo) {
+  fetch(`https://viacep.com.br/ws/SP/Guaruja/${enderecoCampo.value}/json/`)
+    .then((res) => res.json())
+    .then((json) => {
+      enderecoCampo.value = json[0].logradouro;
+      bairroCampo.value = json[0].bairro;
+      cepCampo.value = json[0].cep;
+    });
+}
+
+Array.from(document.getElementsByClassName('formataCEP')).map((campoCep) => {
+  campoCep.addEventListener('focusout', formataCEP);
+});
 
 Array.from(document.getElementsByClassName('formataTexto')).map(
   (campoTexto) => {
@@ -113,4 +142,6 @@ export {
   formataRG,
   formataTexto,
   resetaCampo,
+  handleCEP,
+  handleEndereco,
 };

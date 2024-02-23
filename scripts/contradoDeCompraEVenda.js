@@ -240,62 +240,6 @@ function addComprador() {
   divCompradores.append(fset);
 }
 
-function handleEndereco(event) {
-  if (event.which == 9 || event.keyCode == 9) {
-    let bairro = document.getElementById('bairro');
-
-    fetch(`https://viacep.com.br/ws/SP/Guaruja/${endereco.value}/json/`)
-      .then((res) => res.json())
-      .then((json) => {
-        endereco.value = json[0].logradouro;
-        bairro.value = json[0].bairro;
-        cep.value = json[0].cep;
-      });
-  }
-}
-
-async function handleCEP(event) {
-  let cepCampo = event.target;
-  if (cepCampo.value.length == 8) {
-    let bairro = document.getElementById('bairro');
-
-    fetch(`https://viacep.com.br/ws/${cepCampo.value}/json/`)
-      .then((res) => res.json())
-      .then((json) => {
-        endereco.value = json.logradouro;
-        bairro.value = json.bairro;
-      });
-  }
-}
-
-async function handleCEPDois(event) {
-  let cepCampo = event.target;
-  if (cepCampo.value.length == 8) {
-    let bairro = document.getElementById('bairro2');
-
-    fetch(`https://viacep.com.br/ws/${cepCampo.value}/json/`)
-      .then((res) => res.json())
-      .then((json) => {
-        enderecoDois.value = json.logradouro;
-        bairro.value = json.bairro;
-      });
-  }
-}
-
-async function handleCEPTres(event) {
-  let cepCampo = event.target;
-  if (cepCampo.value.length == 8) {
-    let bairro = document.getElementById('bairro3');
-
-    fetch(`https://viacep.com.br/ws/${cepCampo.value}/json/`)
-      .then((res) => res.json())
-      .then((json) => {
-        enderecoTres.value = json.logradouro;
-        bairro.value = json.bairro;
-      });
-  }
-}
-
 function handleFormSubmit(event) {
   event.preventDefault();
 

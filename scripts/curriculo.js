@@ -3,9 +3,9 @@ let trabalhoIndex = 1;
 
 import {
   formataTexto,
-  formataData,
+  handleCEP,
+  handleEndereco,
   resetaCampo,
-  formataTelefone,
 } from './utils.js';
 
 //#region SELETORES E EVENTOS
@@ -16,13 +16,15 @@ const divTrabalhos = document.querySelector('div.trabalhosField');
 const form = document.querySelector('.contact-form');
 form.addEventListener('submit', handleFormSubmit);
 
-const cep = document.getElementById('cep');
-cep.addEventListener('keyup', handleCEP);
-cep.addEventListener('focus', resetaCampo);
-cep.addEventListener('focusout', formataCEP);
+const cep = document.getElementById('cep1');
+const endereco = document.getElementById('endereco1');
+const bairro = document.getElementById('bairro1');
 
-const endereco = document.getElementById('endereco');
-endereco.addEventListener('keydown', handleEndereco);
+cep.addEventListener('focus', resetaCampo);
+cep.addEventListener('keyup', () => handleCEP(cep, endereco, bairro));
+endereco.addEventListener('focusout', () =>
+  handleEndereco(cep, endereco, bairro)
+);
 
 const bAdicionarTelefone = document.querySelector('input.adicionarTelefone');
 bAdicionarTelefone.addEventListener('click', addTelefone);
@@ -56,38 +58,6 @@ dataDeNascimentoField.addEventListener('focus', resetaCampo);
 //#endregion
 
 //HANDLERS
-
-function handleEndereco(event) {
-  if (event.which == 9 || event.keyCode == 9) {
-    let bairro = document.getElementById('bairro');
-
-    fetch(`https://viacep.com.br/ws/SP/Guaruja/${endereco.value}/json/`)
-      .then((res) => res.json())
-      .then((json) => {
-        endereco.value = json[0].logradouro;
-        bairro.value = json[0].bairro;
-        cep.value = json[0].cep;
-      });
-  }
-}
-
-function formataCEP({ target }) {
-  target.value = target.value.replace(/(\d{5})(\d{3})/, '$1-$2');
-}
-
-async function handleCEP(event) {
-  let cepValor = event.target.value.replace(/\D+/g, '');
-  if (cepValor.length == 8) {
-    let bairro = document.getElementById('bairro');
-
-    fetch(`https://viacep.com.br/ws/${cepValor}/json/`)
-      .then((res) => res.json())
-      .then((json) => {
-        endereco.value = json.logradouro;
-        bairro.value = json.bairro;
-      });
-  }
-}
 
 function handleFormSubmit(event) {
   event.preventDefault();

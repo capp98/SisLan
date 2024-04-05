@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Home</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="../styles/pages.css" />
+    <script type="module" src="../scripts/utils.js"></script>
+    <script type="module" src="../scripts/contratoDeAluguel.js"></script>
+  </head>
+
+  <body>
+    <section class="contact-form">
+      <h1>Contrato de Aluguel</h1>
+
+      <form>
+        <fieldset>
+          <legend>Locatário</legend>
+
+          <div class="div-input">
+            <input
+              id="h"
+              name="locatarioGenero"
+              type="radio"
+              value="o"
+              checked
+            />
+            <label class="inline" for="h">Homem</label>
+
+            <input id="m" name="locatarioGenero" type="radio" value="a" />
+            <label class="inline" for="m">Mulher</label>
+          </div>
+
+          <div class="div-input">
+            <label for="name">Nome Completo*</label>
+            <input
+              id="name"
+              name="locatarioNome"
+              class="formataTexto"
+              type="text"
+              required
+            />
+          </div>
+
+          <div class="div-input">
+            <label for="rg1">RG</label>
+            <input
+              placeholder="Apenas Números"
+              class="formataRG"
+              id="rg1"
+              name="locatarioRg"
+              type="text"
+              required
+              maxlength="9"
+            />
+          </div>
+
+          <div class="div-input">
+            <label for="cpf1">CPF</label>
+            <input
+              placeholder="Apenas Números"
+              class="formataCPF"
+              id="cpf1"
+              name="locatarioCpf"
+              type="text"
+              required
+              maxlength="11"
+            />
+          </div>
+
+          <div class="div-input">
+            <label for="cep1">CEP</label>
+            <input
+              placeholder="Apenas Números"
+              id="cep1"
+              name="locatarioCep"
+              type="text"
+            />
+          </div>
+          <div class="div-input">
+            <div class="endereco endereco">
+              <label for="endereco1">Endereço*</label>
+              <input
+                class="formataTexto"
+                id="endereco1"
+                name="locatarioEndereco"
+                type="text"
+              />
+            </div>
+          </div>
+          <div class="div-endereco div-input">
+            <div class="endereco numero">
+              <label for="numero1">Número*</label>
+              <input id="numero1" name="locatarioNumero" type="text" />
+            </div>
+            <div class="endereco bairro">
+              <label for="bairro1">Bairro*</label>
+              <input
+                class="formataTexto"
+                id="bairro1"
+                name="locatarioBairro"
+                type="text"
+              />
+            </div>
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend>Locador</legend>
+
+          <div class="div-input">
+            <input
+              id="h2"
+              name="locadorGenero"
+              type="radio"
+              value="o"
+              checked
+            />
+            <label class="inline" for="h2">Homem</label>
+
+            <input id="m2" name="locadorGenero" type="radio" value="a" />
+            <label class="inline" for="m2">Mulher</label>
+          </div>
+
+          <div class="div-input">
+            <label for="name2">Nome Completo*</label>
+            <input
+              class="formataTexto"
+              id="name2"
+              name="locadorNome"
+              type="text"
+              required
+            />
+          </div>
+
+          <div class="div-input">
+            <label for="rg2">RG</label>
+            <input
+              placeholder="Apenas Números"
+              class="formataRG"
+              id="rg2"
+              name="locadorRg"
+              type="text"
+              required
+              maxlength="9"
+            />
+          </div>
+
+          <div class="div-input">
+            <label for="cpf2">CPF</label>
+            <input
+              class="formataCPF"
+              id="cpf2"
+              name="locadorCpf"
+              type="text"
+              maxlength="11"
+            />
+          </div>
+
+          <div class="div-input">
+            <label for="cep2">CEP</label>
+            <input id="cep2" name="locadorCep" type="text" />
+          </div>
+          <div class="div-input">
+            <div class="endereco endereco">
+              <label for="endereco2">Endereço*</label>
+              <input
+                class="formataTexto"
+                id="endereco2"
+                name="locadorEndereco"
+                type="text"
+              />
+            </div>
+          </div>
+          <div class="div-endereco div-input">
+            <div class="endereco numero">
+              <label for="numero2">Número*</label>
+              <input id="numero2" name="locadorNumero" type="text" />
+            </div>
+            <div class="endereco bairro">
+              <label for="bairro2">Bairro*</label>
+              <input
+                class="formataTexto"
+                id="bairro2"
+                name="locadorBairro"
+                type="text"
+              />
+            </div>
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend>Objeto de locação</legend>
+
+          <div class="div-input">
+            <label for="valorMensal">Valor Mensal da Locação</label>
+            <input
+              placeholder="1.000,00"
+              id="valorMensal"
+              name="valorMensal"
+              type="text"
+            />
+          </div>
+
+          <div class="div-input">
+            <input
+              type="checkbox"
+              style="display: inline"
+              id="luzEAgua"
+              name="luzEAguaInclusas"
+            />
+            <label style="display: inline" for="luzEAgua"
+              >As contas de água e luz estão inclusas no valor do aluguel</label
+            >
+          </div>
+
+          <div class="div-input">
+            <input
+              type="checkbox"
+              style="display: inline"
+              id="multaQuebra"
+              name="haMultaPorQuebra"
+            />
+            <label style="display: inline" for="multaQuebra"
+              >Multa por quebra de contrato:
+              <input
+                style="display: inline; width: 45px; padding: 5px auto"
+                value="40"
+                name="multaPorQuebra"
+              />
+              % do valor total dos meses faltantes</label
+            >
+          </div>
+          <div class="div-input">
+            <input
+              type="checkbox"
+              style="display: inline"
+              id="multaAtraso"
+              name="haMultaPorAtraso"
+            />
+            <label style="display: inline" for="multaAtraso"
+              >Multa por atraso de pagamento:
+              <input
+                style="display: inline; width: 45px; padding: 5px auto"
+                value="5"
+                name="multaPorAtraso"
+              />
+              % do valor total mensal do aluguel ao dia</label
+            >
+          </div>
+
+          <div class="div-input">
+            <label for="diaDeVencimento">Dia de vencimento</label>
+
+            <input
+              placeholder="Apenas Números"
+              class="formataData"
+              id="diaDeVencimento"
+              name="diaDeVencimento"
+              type="text"
+              maxlength="9"
+            />
+          </div>
+
+          <div class="div-input">
+            <label for="prazoDeLocacao">Duração da Locação</label>
+            <input
+              placeholder="1 ano"
+              id="prazoDeLocacao"
+              name="prazoDeLocacao"
+              type="text"
+              maxlength="11"
+            />
+          </div>
+
+          <div class="div-input">
+            <label for="dataDeInicio">Data de Início</label>
+            <input
+              placeholder="Apenas Números"
+              class="formataData"
+              id="dataDeInicio"
+              name="dataDeInicio"
+              type="text"
+              maxlength="11"
+            />
+          </div>
+
+          <div class="div-input">
+            <label for="dataDeTermino">Data de Término</label>
+            <input
+              placeholder="Apenas Números"
+              class="formataData"
+              id="dataDeTermino"
+              name="dataDeTermino"
+              type="text"
+              maxlength="11"
+            />
+          </div>
+
+          <div class="div-input">
+            <label for="cep3">CEP</label>
+            <input
+              placeholder="Apenas Números"
+              id="cep3"
+              name="objetoCep"
+              type="text"
+            />
+          </div>
+          <div class="div-input">
+            <div class="endereco endereco">
+              <label for="endereco3">Endereço*</label>
+              <input
+                class="formataTexto"
+                id="endereco3"
+                name="objetoEndereco"
+                type="text"
+              />
+            </div>
+          </div>
+          <div class="div-endereco div-input">
+            <div class="endereco numero">
+              <label for="numero3">Número*</label>
+              <input id="numero3" name="objetoNumero" type="text" />
+            </div>
+            <div class="endereco bairro">
+              <label for="bairro3">Bairro*</label>
+              <input
+                class="formataTexto"
+                id="bairro3"
+                name="objetoBairro"
+                type="text"
+              />
+            </div>
+          </div>
+          <div class="div-endereco div-input">
+            <div class="endereco">
+              <label for="cidade">Cidade*</label>
+              <input
+                class="formataTexto"
+                id="cidade"
+                name="objetoCidade"
+                type="text"
+              />
+            </div>
+            <div class="endereco bairro">
+              <label for="estado">Estado*</label>
+              <input
+                class="formataTexto"
+                id="estado"
+                name="objetoEstado"
+                type="text"
+              />
+            </div>
+          </div>
+        </fieldset>
+        <button type="submit">Criar</button>
+      </form>
+    </section>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+    <script src="https://unpkg.com/docx@7.1.0/build/index.js"></script>
+  </body>
+</html>

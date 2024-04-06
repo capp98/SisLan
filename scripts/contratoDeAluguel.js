@@ -200,56 +200,6 @@ function gen(dados) {
       new paragrafo({
         children: [
           new texto({
-            text: `Locador${dados.locadorGenero == 'a' ? 'a' : ''}`,
-            bold: true,
-          }),
-        ],
-        style: 'normal',
-        spacing: {
-          line: 276,
-        },
-      })
-    );
-
-    paragraphArray.push(new docx.Paragraph(new texto('')));
-    paragraphArray.push(new docx.Paragraph(new texto('')));
-    paragraphArray.push(new docx.Paragraph(new texto('')));
-
-    paragraphArray.push(
-      new paragrafo({
-        children: [
-          new texto({
-            text: '_____________________________________________',
-            bold: true,
-          }),
-        ],
-        style: 'normal',
-        spacing: {
-          line: 276,
-        },
-      })
-    );
-
-    paragraphArray.push(
-      new paragrafo({
-        children: [
-          new texto({
-            text: `${dados.locadorNome}`,
-            bold: true,
-          }),
-        ],
-        style: 'normal',
-      })
-    );
-
-    paragraphArray.push(new docx.Paragraph(new texto('')));
-    paragraphArray.push(new docx.Paragraph(new texto('')));
-    paragraphArray.push(new docx.Paragraph(new texto('')));
-
-    paragraphArray.push(
-      new paragrafo({
-        children: [
-          new texto({
             text: `Locatári${dados.locatarioGenero == 'a' ? 'a' : 'o'}`,
             bold: true,
           }),
@@ -285,6 +235,56 @@ function gen(dados) {
         children: [
           new texto({
             text: `${dados.locatarioNome}`,
+            bold: true,
+          }),
+        ],
+        style: 'normal',
+      })
+    );
+
+    paragraphArray.push(new docx.Paragraph(new texto('')));
+    paragraphArray.push(new docx.Paragraph(new texto('')));
+    paragraphArray.push(new docx.Paragraph(new texto('')));
+
+    paragraphArray.push(
+      new paragrafo({
+        children: [
+          new texto({
+            text: `Locador${dados.locadorGenero == 'a' ? 'a' : ''}`,
+            bold: true,
+          }),
+        ],
+        style: 'normal',
+        spacing: {
+          line: 276,
+        },
+      })
+    );
+
+    paragraphArray.push(new docx.Paragraph(new texto('')));
+    paragraphArray.push(new docx.Paragraph(new texto('')));
+    paragraphArray.push(new docx.Paragraph(new texto('')));
+
+    paragraphArray.push(
+      new paragrafo({
+        children: [
+          new texto({
+            text: '_____________________________________________',
+            bold: true,
+          }),
+        ],
+        style: 'normal',
+        spacing: {
+          line: 276,
+        },
+      })
+    );
+
+    paragraphArray.push(
+      new paragrafo({
+        children: [
+          new texto({
+            text: `${dados.locadorNome}`,
             bold: true,
           }),
         ],

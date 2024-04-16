@@ -49,11 +49,13 @@ function formataData({ target }) {
 
 function formataRG(event) {
   let campoRG = event.target;
-  let rg = campoRG.value.replace(/\D+/g, '');
+  let rg = campoRG.value.replace(/[^a-zA-Z0-9x\s]/g, '');
 
   campoRG.value =
     rg.length == 9
-      ? rg.replace(/(\d{2})(\d{3})(\d{3})(\d{1})/, '$1.$2.$3-$4')
+      ? rg
+          .replace(/(\d{2})(\d{3})(\d{3})([0-9xX])/, '$1.$2.$3-$4')
+          .toUpperCase()
       : rg;
 }
 
@@ -76,7 +78,7 @@ function formataTexto({ target }) {
   let conjunto = [];
 
   nome.forEach((n) => {
-    if (!n.match(/\bd[a,o,e][s]?\b/g))
+    if (!n.match(/\b(?:da|de|do|das|dos)\b/g))
       conjunto.push(n.charAt(0).toUpperCase() + n.slice(1));
     else conjunto.push(n);
   });

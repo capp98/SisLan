@@ -17,7 +17,7 @@ const cepTres = document.getElementById('cep3');
 const enderecoTres = document.getElementById('endereco3');
 const bairroTres = document.getElementById('bairro3');
 
-let campoHaMultaPorAtraso = document.getElementById('haMultaAtraso');
+let campoHaMultaPorAtraso = document.getElementById('haMultaPorAtraso');
 let campoMultaPorAtraso = document.getElementById('multaPorAtraso');
 
 campoHaMultaPorAtraso.addEventListener(
@@ -25,7 +25,7 @@ campoHaMultaPorAtraso.addEventListener(
   () => (campoMultaPorAtraso.disabled = !campoMultaPorAtraso.disabled)
 );
 
-let campoHaMultaPorQuebra = document.getElementById('haMultaQuebra');
+let campoHaMultaPorQuebra = document.getElementById('haMultaPorQuebra');
 let campoMultaPorQuebra = document.getElementById('multaPorQuebra');
 
 campoHaMultaPorQuebra.addEventListener(

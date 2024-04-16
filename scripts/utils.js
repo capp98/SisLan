@@ -18,33 +18,34 @@ const convertePt = (valor) => valor * 20;
 //#region Formata Campos
 
 function formataTelefone(event) {
-  let telefoneCampo = event.target;
-  let telefone = telefoneCampo.value.replace(/\D+/g, '');
+  const campoTelefone = event.target;
+  let telefone = campoTelefone.value.replace(/\D+/g, ''); // Remove todos os caracteres que não são dígitos
 
-  telefone =
-    telefone.length < 9
-      ? telefone.replace(/(\d{4})(\d{4})/, '$1-$2')
-      : telefone.length == 9
-      ? telefone.replace(/(\d{5})(\d{4})/, '$1-$2')
-      : telefone.replace(/(\d{2})(\d{5})(\d{2})/, '($1) $2-$3');
+  // Formatação de acordo com o comprimento do número de telefone
+  if (telefone.length === 8) {
+    telefone = telefone.replace(/(\d{4})(\d{4})/, '$1-$2'); // Formato: XXXX-XXXX
+  } else if (telefone.length === 9) {
+    telefone = telefone.replace(/(\d{5})(\d{4})/, '$1-$2'); // Formato: XXXXX-XXXX
+  } else if (telefone.length === 10) {
+    telefone = telefone.replace(/(\d{2})(\d{4})(\d{4})/, '($1) $2-$3'); // Formato: (XX) XXXX-XXXX
+  }
 
-  telefoneCampo.value = telefone;
+  campoTelefone.value = telefone; // Atualiza o valor do campo de telefone
 }
 
 function formataData({ target }) {
-  let dataCampo = target;
-  let dataTexto = dataCampo.value;
+  const campoData = target;
+  let dataTexto = campoData.value.replace(/\D+/g, '');
 
-  let reg = RegExp(/^([0-9]{2})([0-9]{2})([0-9]{4})$/g);
+  // Expressão regular para identificar o formato de data DDMMYYYY
+  const reg = RegExp(/^([0-9]{2})([0-9]{2})([0-9]{4})$/g);
 
-  let dataFormatada = dataTexto
-    .split(' ')
-    .map((i) =>
-      reg.test(i) ? i.replace(/([0-9]{2})([0-9]{2})([0-9]{4})/, '$1/$2/$3') : i
-    )
-    .join(' ');
+  // Verifica se a data possui o formato correto e formata
+  const dataFormatada = reg.test(dataTexto)
+    ? dataTexto.replace(/(\d{2})(\d{2})(\d{4})/, '$1/$2/$3')
+    : dataTexto;
 
-  dataCampo.value = dataFormatada;
+  campoData.value = dataFormatada; // Atualiza o valor do campo de data
 }
 
 function formataRG(event) {
@@ -70,7 +71,7 @@ function formataCPF(event) {
 }
 
 const resetaCampo = (event) => {
-  event.target.value = event.target.value.replace(/\D+/g, '');
+  event.target.value = event.target.value.replace(/[^a-zA-Z0-9x\s]/g, '');
 };
 
 function formataTexto({ target }) {

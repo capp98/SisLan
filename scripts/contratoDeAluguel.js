@@ -17,6 +17,22 @@ const cepTres = document.getElementById('cep3');
 const enderecoTres = document.getElementById('endereco3');
 const bairroTres = document.getElementById('bairro3');
 
+let campoHaMultaPorAtraso = document.getElementById('haMultaAtraso');
+let campoMultaPorAtraso = document.getElementById('multaPorAtraso');
+
+campoHaMultaPorAtraso.addEventListener(
+  'change',
+  () => (campoMultaPorAtraso.disabled = !campoMultaPorAtraso.disabled)
+);
+
+let campoHaMultaPorQuebra = document.getElementById('haMultaQuebra');
+let campoMultaPorQuebra = document.getElementById('multaPorQuebra');
+
+campoHaMultaPorQuebra.addEventListener(
+  'change',
+  () => (campoMultaPorQuebra.disabled = !campoMultaPorQuebra.disabled)
+);
+
 cep.addEventListener('focus', resetaCampo);
 cep.addEventListener('keyup', () => handleCEP(cep, endereco, bairro));
 endereco.addEventListener('focusout', () =>
@@ -38,9 +54,71 @@ cepTres.addEventListener('keyup', () =>
 enderecoTres.addEventListener('focusout', () =>
   handleEndereco(cepTres, enderecoTres, bairroTres)
 );
+
+const dataInicio = document.getElementById('dataDeInicio');
+const dataTermino = document.getElementById('dataDeTermino');
+const prazo = document.getElementById('prazoDeLocacao');
+const isDataDeTerminoAutomatica = document.getElementById(
+  'isDataDeTerminoAutomatica'
+);
+
+isDataDeTerminoAutomatica.addEventListener(
+  'change',
+  (e) => (dataTermino.disabled = e.target.checked)
+);
+isDataDeTerminoAutomatica.addEventListener('change', () => {
+  if (dataInicio.value.length >= 10) calculaDuracao();
+});
+
+dataInicio.addEventListener('keyup', () => {
+  if (dataInicio.value.length >= 10) calculaDuracao();
+});
+dataInicio.addEventListener('focusout', () => {
+  if (dataInicio.value.length >= 10) calculaDuracao();
+});
+prazo.addEventListener('keyup', () => {
+  if (dataInicio.value.length >= 10) calculaDuracao();
+});
 //#endregion
 
 //HANDLERS
+
+function calculaDuracao() {
+  if (isDataDeTerminoAutomatica.checked) {
+    let duracaoTexto = prazo.value.replace(/[^a-zA-Z0-9x\s]/g, ' ');
+    duracaoTexto = duracaoTexto.replace('dias', 'dia');
+    duracaoTexto = duracaoTexto.replace('meses', 'mês');
+    duracaoTexto = duracaoTexto.replace('anos', 'ano');
+    duracaoTexto = duracaoTexto.split(' ');
+
+    let datas = dataInicio.value.split('/');
+    let data = new Date(
+      `${Number.parseInt(datas[2])}-${datas[1]}-${datas[0]}T00:00:00`
+    );
+
+    let diaAMais = Number.parseInt(
+      duracaoTexto[duracaoTexto.indexOf('dia') - 1]
+    );
+    let mesAMais = Number.parseInt(
+      duracaoTexto[duracaoTexto.indexOf('mês') - 1]
+    );
+    let anoAMais = Number.parseInt(
+      duracaoTexto[duracaoTexto.indexOf('ano') - 1]
+    );
+
+    if (!!diaAMais) data.setDate(data.getDate() + diaAMais);
+    if (!!mesAMais) data.setMonth(data.getMonth() + mesAMais);
+    if (!!anoAMais) data.setFullYear(data.getFullYear() + anoAMais);
+
+    let dia = Number.parseInt(data.getDate());
+    dia = dia < 10 ? '0' + dia : dia;
+    let mes = Number.parseInt(data.getMonth()) + 1;
+    mes = mes < 10 ? '0' + mes : mes;
+    let ano = Number.parseInt(data.getFullYear());
+
+    dataTermino.value = `${dia}/${mes}/${ano}`;
+  }
+}
 
 function handleFormSubmit(event) {
   event.preventDefault();
@@ -200,6 +278,56 @@ function gen(dados) {
       new paragrafo({
         children: [
           new texto({
+            text: `Locador${dados.locadorGenero == 'a' ? 'a' : ''}`,
+            bold: true,
+          }),
+        ],
+        style: 'normal',
+        spacing: {
+          line: 276,
+        },
+      })
+    );
+
+    paragraphArray.push(new docx.Paragraph(new texto('')));
+    paragraphArray.push(new docx.Paragraph(new texto('')));
+    paragraphArray.push(new docx.Paragraph(new texto('')));
+
+    paragraphArray.push(
+      new paragrafo({
+        children: [
+          new texto({
+            text: '_____________________________________________',
+            bold: true,
+          }),
+        ],
+        style: 'normal',
+        spacing: {
+          line: 276,
+        },
+      })
+    );
+
+    paragraphArray.push(
+      new paragrafo({
+        children: [
+          new texto({
+            text: `${dados.locadorNome}`,
+            bold: true,
+          }),
+        ],
+        style: 'normal',
+      })
+    );
+
+    paragraphArray.push(new docx.Paragraph(new texto('')));
+    paragraphArray.push(new docx.Paragraph(new texto('')));
+    paragraphArray.push(new docx.Paragraph(new texto('')));
+
+    paragraphArray.push(
+      new paragrafo({
+        children: [
+          new texto({
             text: `Locatári${dados.locatarioGenero == 'a' ? 'a' : 'o'}`,
             bold: true,
           }),
@@ -242,55 +370,53 @@ function gen(dados) {
       })
     );
 
-    paragraphArray.push(new docx.Paragraph(new texto('')));
-    paragraphArray.push(new docx.Paragraph(new texto('')));
-    paragraphArray.push(new docx.Paragraph(new texto('')));
+    return paragraphArray;
+  };
 
-    paragraphArray.push(
-      new paragrafo({
-        children: [
-          new texto({
-            text: `Locador${dados.locadorGenero == 'a' ? 'a' : ''}`,
-            bold: true,
-          }),
-        ],
-        style: 'normal',
-        spacing: {
-          line: 276,
-        },
-      })
-    );
+  const multaPorQuebra = () => {
+    let paragraphArray = [];
 
     paragraphArray.push(new docx.Paragraph(new texto('')));
-    paragraphArray.push(new docx.Paragraph(new texto('')));
+
+    if (dados.haMultaPorQuebra) {
+      paragraphArray.push(
+        new paragrafo({
+          text: `Se houver quebra de contrato pelo LOCATÁRI${
+            dados.locatarioGenero == 'o' ? 'O' : 'A'
+          }, implicará em multa de ${
+            dados.multaPorQuebra
+          }% do restante dos meses que estarão falando no contrato.`,
+          numbering: {
+            reference: 'bolinha',
+            level: 0,
+          },
+          style: 'normal',
+        })
+      );
+      paragraphArray.push(new docx.Paragraph(new texto('')));
+    }
+
+    return paragraphArray;
+  };
+
+  const multaPorVencimento = () => {
+    let paragraphArray = [];
+
     paragraphArray.push(new docx.Paragraph(new texto('')));
 
-    paragraphArray.push(
-      new paragrafo({
-        children: [
-          new texto({
-            text: '_____________________________________________',
-            bold: true,
-          }),
-        ],
-        style: 'normal',
-        spacing: {
-          line: 276,
-        },
-      })
-    );
-
-    paragraphArray.push(
-      new paragrafo({
-        children: [
-          new texto({
-            text: `${dados.locadorNome}`,
-            bold: true,
-          }),
-        ],
-        style: 'normal',
-      })
-    );
+    if (dados.haMultaPorVencimento) {
+      paragraphArray.push(
+        new paragrafo({
+          text: `Após o vencimento, ocorrerá multa de ${dados.multaPorAtraso}% do valor total mensal do aluguel ao dia.`,
+          numbering: {
+            reference: 'bolinha',
+            level: 0,
+          },
+          style: 'normal',
+        })
+      );
+      paragraphArray.push(new docx.Paragraph(new texto('')));
+    }
 
     return paragraphArray;
   };
@@ -457,29 +583,8 @@ function gen(dados) {
             },
             style: 'normal',
           }),
-          espacoVazio,
-          new paragrafo({
-            text: `Se houver quebra de contrato pelo LOCATÁRI${
-              dados.locatarioGenero == 'o' ? 'O' : 'A'
-            }, implicará em multa de ${
-              dados.multaPorQuebra
-            }% do restante dos meses que estarão falando no contrato.`,
-            numbering: {
-              reference: 'bolinha',
-              level: 0,
-            },
-            style: 'normal',
-          }),
-          espacoVazio,
-          new paragrafo({
-            text: `Após o vencimento, ocorrerá multa de ${dados.multaPorAtraso}% do valor total mensal do aluguel ao dia.`,
-            numbering: {
-              reference: 'bolinha',
-              level: 0,
-            },
-            style: 'normal',
-          }),
-          espacoVazio,
+          ...multaPorQuebra(),
+          ...multaPorVencimento(),
           new paragrafo({
             text: `O imóvel destina-se exclusivamente para uso residencial, sendo vedada qualquer outra forma de utilização.`,
             numbering: {

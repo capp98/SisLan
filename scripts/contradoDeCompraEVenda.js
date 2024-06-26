@@ -9,7 +9,7 @@ import {
   formataTexto,
   resetaCampo,
   handleCEP,
-  handleEndereco,
+  // handleEndereco,
 } from './utils.js';
 
 //#region SELETORES E EVENTOS
@@ -23,36 +23,44 @@ form.addEventListener('submit', handleFormSubmit);
 const cep = document.getElementById('cep1');
 const endereco = document.getElementById('endereco1');
 const bairro = document.getElementById('bairro1');
+const cidade = document.getElementById('cidade1');
+const estado = document.getElementById('estado1');
 
 const cepDois = document.getElementById('cep2');
 const enderecoDois = document.getElementById('endereco2');
 const bairroDois = document.getElementById('bairro2');
+const cidadeDois = document.getElementById('cidade2');
+const estadoDois = document.getElementById('estado2');
 
 const cepTres = document.getElementById('cep3');
 const enderecoTres = document.getElementById('endereco3');
 const bairroTres = document.getElementById('bairro3');
+const cidadeTres = document.getElementById('cidade3');
+const estadoTres = document.getElementById('estado3');
 
 cep.addEventListener('focus', resetaCampo);
-cep.addEventListener('keyup', () => handleCEP(cep, endereco, bairro));
-endereco.addEventListener('focusout', () =>
-  handleEndereco(cep, endereco, bairro)
+cep.addEventListener('keyup', () =>
+  handleCEP(cep, endereco, bairro, cidade, estado)
 );
+// endereco.addEventListener('focusout', () =>
+//   handleEndereco(cep, endereco, bairro)
+// );
 
 cepDois.addEventListener('focus', resetaCampo);
 cepDois.addEventListener('keyup', () =>
-  handleCEP(cepDois, enderecoDois, bairroDois)
+  handleCEP(cepDois, enderecoDois, bairroDois, cidadeDois, estadoDois)
 );
-enderecoDois.addEventListener('focusout', () =>
-  handleEndereco(cepDois, enderecoDois, bairroDois)
-);
+// enderecoDois.addEventListener('focusout', () =>
+//   handleEndereco(cepDois, enderecoDois, bairroDois, cidade, estado)
+// );
 
 cepTres.addEventListener('focus', resetaCampo);
 cepTres.addEventListener('keyup', () =>
-  handleCEP(cepTres, enderecoTres, bairroTres)
+  handleCEP(cepTres, enderecoTres, bairroTres, cidadeTres, estadoTres)
 );
-enderecoTres.addEventListener('focusout', () =>
-  handleEndereco(cepTres, enderecoTres, bairroTres)
-);
+// enderecoTres.addEventListener('focusout', () =>
+//   handleEndereco(cepTres, enderecoTres, bairroTres)
+// );
 
 const bAdicionarVendedor = document.querySelector('input.adicionarVendedor');
 bAdicionarVendedor.addEventListener('click', addVendedor);

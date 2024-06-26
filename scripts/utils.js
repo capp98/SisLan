@@ -94,28 +94,43 @@ function formataTexto({ target }) {
 
 //#region Handlers
 
-async function handleCEP(cepCampo, enderecoCampo, bairroCampo) {
+async function handleCEP(
+  cepCampo,
+  enderecoCampo,
+  bairroCampo,
+  cidadeCampo,
+  estadoCampo
+) {
   if (cepCampo.value.length == 8) {
     fetch(`https://viacep.com.br/ws/${cepCampo.value}/json/`)
       .then((res) => res.json())
       .then((json) => {
         enderecoCampo.value = json.logradouro;
         bairroCampo.value = json.bairro;
+        cidadeCampo.value = json.localidade;
+        estadoCampo.value = json.uf;
       });
     cepCampo.value = cepCampo.value.replace(/(\d{5})(\d{3})/, '$1-$2');
   }
 }
 
-function handleEndereco(cepCampo, enderecoCampo, bairroCampo) {
-  fetch(`https://viacep.com.br/ws/SP/Guaruja/${enderecoCampo.value}/json/`)
-    .then((res) => res.json())
-    .then((json) => {
-      enderecoCampo.value = json[0].logradouro;
-      bairroCampo.value = json[0].bairro;
-      cepCampo.value = json[0].cep;
-    });
-  cepCampo.value = cepCampo.value.replace(/(\d{5})(\d{3})/, '$1-$2');
-}
+// function handleEndereco(
+//   cepCampo,
+//   enderecoCampo,
+//   bairroCampo,
+//   cidadeCampo,
+//   estadoCampo
+// ) {
+//   fetch(`https://viacep.com.br/ws/SP/Guaruja/${enderecoCampo.value}/json/`)
+//     .then((res) => res.json())
+//     .then((json) => {
+//       enderecoCampo.value = json.logradouro;
+//       bairroCampo.value = json.bairro;
+//       cidadeCampo.value = json.localidade;
+//       estadoCampo.value = json.uf;
+//     });
+//   cepCampo.value = cepCampo.value.replace(/(\d{5})(\d{3})/, '$1-$2');
+// }
 
 // Array.from(document.getElementsByClassName('formataCEP')).map((campoCep) => {
 //   campoCep.addEventListener('focusout', formataCEP);
@@ -153,5 +168,5 @@ export {
   formataTexto,
   resetaCampo,
   handleCEP,
-  handleEndereco,
+  // handleEndereco,
 };

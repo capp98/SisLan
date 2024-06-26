@@ -1,4 +1,4 @@
-import { meses, handleCEP, handleEndereco, resetaCampo } from './utils.js';
+import { meses, handleCEP, /*handleEndereco,*/ resetaCampo } from './utils.js';
 
 //#region SELETORES E EVENTOS
 
@@ -8,12 +8,16 @@ form.addEventListener('submit', handleFormSubmit);
 const cep = document.getElementById('cep1');
 const endereco = document.getElementById('endereco1');
 const bairro = document.getElementById('bairro1');
+const cidade = document.getElementById('cidade1');
+const estado = document.getElementById('estado1');
 
 cep.addEventListener('focus', resetaCampo);
-cep.addEventListener('keyup', () => handleCEP(cep, endereco, bairro));
-endereco.addEventListener('focusout', () =>
-  handleEndereco(cep, endereco, bairro)
+cep.addEventListener('keyup', () =>
+  handleCEP(cep, endereco, bairro, cidade, estado)
 );
+// endereco.addEventListener('focusout', () =>
+//   handleEndereco(cep, endereco, bairro, cidade, estado)
+// );
 
 //#endregion
 

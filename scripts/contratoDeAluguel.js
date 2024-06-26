@@ -1,4 +1,4 @@
-import { resetaCampo, handleCEP, handleEndereco, meses } from './utils.js';
+import { resetaCampo, handleCEP, /*handleEndereco,*/ meses } from './utils.js';
 
 //#region SELETORES E EVENTOS
 
@@ -34,26 +34,28 @@ campoHaMultaPorQuebra.addEventListener(
 );
 
 cep.addEventListener('focus', resetaCampo);
-cep.addEventListener('keyup', () => handleCEP(cep, endereco, bairro));
-endereco.addEventListener('focusout', () =>
-  handleEndereco(cep, endereco, bairro)
+cep.addEventListener('keyup', () =>
+  handleCEP(cep, endereco, bairro, cidade, estado)
 );
+// endereco.addEventListener('focusout', () =>
+//   handleEndereco(cep, endereco, bairro)
+// );
 
 cepDois.addEventListener('focus', resetaCampo);
 cepDois.addEventListener('keyup', () =>
-  handleCEP(cepDois, enderecoDois, bairroDois)
+  handleCEP(cepDois, enderecoDois, bairroDois, cidadeDois, estadoDois)
 );
-enderecoDois.addEventListener('focusout', () =>
-  handleEndereco(cepDois, enderecoDois, bairroDois)
-);
+// enderecoDois.addEventListener('focusout', () =>
+//   handleEndereco(cepDois, enderecoDois, bairroDois, cidade, estado)
+// );
 
 cepTres.addEventListener('focus', resetaCampo);
 cepTres.addEventListener('keyup', () =>
-  handleCEP(cepTres, enderecoTres, bairroTres)
+  handleCEP(cepTres, enderecoTres, bairroTres, cidadeTres, estadoTres)
 );
-enderecoTres.addEventListener('focusout', () =>
-  handleEndereco(cepTres, enderecoTres, bairroTres)
-);
+// enderecoTres.addEventListener('focusout', () =>
+//   handleEndereco(cepTres, enderecoTres, bairroTres)
+// );
 
 const dataInicio = document.getElementById('dataDeInicio');
 const dataTermino = document.getElementById('dataDeTermino');
